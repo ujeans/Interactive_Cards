@@ -1,0 +1,36 @@
+$red: lighten(#ff4646, 10%);
+$teal: lighten(#ffaf00, 20%);
+
+body {
+  margin: 0;
+}
+
+.canvas {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(lighten($red, 10%), lighten($teal, 10%));
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(lighten($teal, 10%), lighten($red, 10%));
+    opacity: 0;
+    animation: cycle 4s infinite;
+  }
+}
+
+@keyframes cycle {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
