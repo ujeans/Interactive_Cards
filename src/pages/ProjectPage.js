@@ -1,5 +1,7 @@
 import React from "react";
 
-export default function ProjectPage() {
+const ProjectPage = () => {
   return <div>ProjectPage</div>;
-}
+};
+
+export default ProjectPage;
