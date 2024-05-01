@@ -1,7 +1,7 @@
-import React from "react";
+import Layout from "../containers/common/Layout";
 
 const MainPage = () => {
-  return <div>MainPage</div>;
+  return <Layout>MainPage</Layout>;
 };
 
 export default MainPage;

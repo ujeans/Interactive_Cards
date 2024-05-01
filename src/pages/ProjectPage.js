@@ -1,7 +1,7 @@
-import React from "react";
+import Layout from "../containers/common/Layout";
 
 const ProjectPage = () => {
-  return <div>ProjectPage</div>;
+  return <Layout>ProjectPage</Layout>;
 };
 
 export default ProjectPage;

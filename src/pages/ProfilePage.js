@@ -1,7 +1,7 @@
-import React from "react";
+import Layout from "../containers/common/Layout";
 
 const ProfilePage = () => {
-  return <div>ProfilePage</div>;
+  return <Layout>ProfilePage</Layout>;
 };
 
 export default ProfilePage;
