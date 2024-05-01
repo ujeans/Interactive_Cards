@@ -6,6 +6,7 @@ body {
 }
 
 .canvas {
+  position: absolute;
   height: 100vh;
   width: 100vw;
   background: linear-gradient(lighten($red, 10%), lighten($teal, 10%));
