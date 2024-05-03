@@ -21,20 +21,21 @@ export default Layout;
 
 const Container = styled.div`
   margin-top: 60px;
+  padding-bottom: 200px;
   display: flex;
   justify-content: center;
 `;
 
 const Wrapper = styled.div`
   width: 1000px;
-  height: 900px;
+  height: fit-content;
   margin-top: 60px;
 `;
 
 const Title = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 90px 0px 40px 0px;
+  /* display: flex; */
+  /* justify-content: center; */
+  padding-top: 90px;
   font-size: 40px;
 `;
 
