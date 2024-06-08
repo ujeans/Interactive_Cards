@@ -1,12 +1,25 @@
-// src/MainPage.js
 import React from "react";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { openPage } from "../modules/pageloadings";
+
 // assets
 import folder from "../assets/folder.svg";
 import xBtn from "../assets/xbtn.svg";
 import cloud from "../assets/cloud.svg";
 
 const MainPage = () => {
+  const dispatch = useDispatch();
+  const location = useLocation;
+
+  const onClickHexagonal = e => {
+    e.preventDefault();
+
+    if (location.pathname === "/project") return;
+    else dispatch(openPage("/project"));
+  };
+
   const renderErrorMessages = () => {
     const messages = [];
     for (let i = 0; i < 5; i++) {
@@ -41,7 +54,7 @@ const MainPage = () => {
         <FolderName>My Profile</FolderName>
       </FolderWrapper>
       <FolderWrapper top="20%" left="5%">
-        <Folder src={folder} />
+        <Folder src={folder} onClick={onClickHexagonal} />
         <FolderName>My Project</FolderName>
       </FolderWrapper>
       {renderErrorMessages()}

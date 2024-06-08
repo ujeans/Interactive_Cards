@@ -5,6 +5,7 @@ import ProfilePage from "./pages/ProfilePage";
 import ProjectPage from "./pages/ProjectPage";
 import MainPage from "./pages/MainPage";
 import PageNavAnimation from "./containers/PageNavAnimation";
+import ProjectDetail from "./pages/ProjectDetail";
 
 import * as loadingTime from "./styles/loadingTime";
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/main" element={<MainPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/project" element={<ProjectPage />} />
+        <Route path="/project-detail" element={<ProjectDetail />} />
       </Routes>
     </PageNavAnimation>
   );
