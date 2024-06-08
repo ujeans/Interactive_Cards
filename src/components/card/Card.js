@@ -1,42 +1,47 @@
-import { useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { openPage } from "../../modules/pageloadings";
 import { useState } from "react";
+import Modal from "../modal/Modal";
 
 const Card = ({ id, title, image }) => {
-  const dispatch = useDispatch();
-  const location = useLocation;
-
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const onClick = () => {
-    setOpen(true);
+    setIsOpen(true);
   };
 
   return (
-    <CardContainer onClick={onClick}>
-      <CardFace className="card-front">
-        <CardHeader>
-          <HeaderName>프로젝트이름</HeaderName>
-          <Xtn>X</Xtn>
-        </CardHeader>
-        <CardBottom id={id}>
-          <CardContent></CardContent>
-          <TextWrapper>
-            <ProjectName>{title}ㅇㅇ</ProjectName>
-            <ProjectDesc>Frontend, Design/기간</ProjectDesc>
-          </TextWrapper>
-          <BtnWrapper>
-            <Btn>LAUNCH</Btn>
-            <Btn>EXIT</Btn>
-          </BtnWrapper>
-        </CardBottom>
-      </CardFace>
-      <CardFace className="card-back">
-        <BackImage src={image} alt="Back of card" />
-      </CardFace>
-    </CardContainer>
+    <>
+      <CardContainer onClick={onClick}>
+        <CardFace className="card-front">
+          <CardHeader>
+            <HeaderName>프로젝트이름</HeaderName>
+            <Xtn>X</Xtn>
+          </CardHeader>
+          <CardBottom id={id}>
+            <CardContent></CardContent>
+            <TextWrapper>
+              <ProjectName>{title}ㅇㅇ</ProjectName>
+              <ProjectDesc>Frontend, Design/기간</ProjectDesc>
+            </TextWrapper>
+            <BtnWrapper>
+              <Btn>LAUNCH</Btn>
+              <Btn>EXIT</Btn>
+            </BtnWrapper>
+          </CardBottom>
+        </CardFace>
+        <CardFace className="card-back">
+          <BackImage src={image} alt="Back of card" />
+        </CardFace>
+      </CardContainer>
+      {isOpen && (
+        <Modal
+          open={isOpen}
+          onClose={() => {
+            setIsOpen(false);
+          }}
+        />
+      )}
+    </>
   );
 };
 
