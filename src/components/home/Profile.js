@@ -10,8 +10,8 @@ const Profile = () => {
   const onClickHexagonal = e => {
     e.preventDefault();
 
-    if (location.pathname === "/profile") return;
-    else dispatch(openPage("/profile"));
+    if (location.pathname === "/main") return;
+    else dispatch(openPage("/main"));
   };
 
   return (
