@@ -24,7 +24,7 @@ function App() {
       <PageNavAnimation limitTime={loadingTime.page}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          {/* <Route path="/main" element={<MainPage />} /> */}
+          <Route path="/main" element={<MainPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/project" element={<ProjectPage />} />
           <Route path="/project-detail" element={<ProjectDetail />} />

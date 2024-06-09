@@ -1,7 +1,67 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
+// components
+import ScrollCards from "../components/main/ScrollCards";
+import Logo from "../components/main/Logo";
+
+const cardText = [
+  {
+    strong: "profile",
+    name: "Hong yu jin",
+    position: "Frontend Developer",
+    email: "dbwlsxkal95@gmail.com",
+    phone: "010-9171-4297",
+    city: "Seoul",
+  },
+  {
+    strong: "project",
+    name: "Hong yu jin",
+    position: "Frontend Developer",
+    email: "dbwlsxkal95@gmail.com",
+    phone: "010-9171-4297",
+    city: "Seoul",
+  },
+];
 
 const MainPage = () => {
-  return <div>MainPage</div>;
+  useEffect(() => {
+    const scrollGrid = () => {
+      const bodyHeight = document.body.offsetHeight;
+      const mainHeight = document.querySelector("main").offsetHeight;
+      const cards = document.querySelector(".cards");
+
+      console.log("bodyHeight:", bodyHeight);
+      console.log("mainHeight:", mainHeight);
+      console.log("cards:", cards);
+
+      const transY = (window.pageYOffset / (mainHeight - bodyHeight)) * -100;
+
+      cards.style.setProperty("--scroll", transY + "%");
+    };
+
+    window.addEventListener("resize", scrollGrid);
+    window.addEventListener("scroll", scrollGrid);
+
+    scrollGrid();
+
+    return () => {
+      window.removeEventListener("resize", scrollGrid);
+      window.removeEventListener("scroll", scrollGrid);
+    };
+  }, []);
+
+  const cards = Array.from({ length: 36 }, (_, i) => i % cardText.length);
+
+  return (
+    <>
+      <Helmet>
+        <title>ULog - Main</title>
+      </Helmet>
+
+      <Logo />
+      <ScrollCards cards={cards} cardText={cardText} />
+    </>
+  );
 };
 
 export default MainPage;
