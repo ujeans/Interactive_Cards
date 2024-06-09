@@ -21,15 +21,15 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <PageNavAnimation limitTime={loadingTime.page}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/main" element={<MainPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/project" element={<ProjectPage />} />
-          <Route path="/project-detail" element={<ProjectDetail />} />
-        </Routes>
-      </PageNavAnimation>
+      {/* <PageNavAnimation limitTime={loadingTime.page}> */}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/main" element={<MainPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/project" element={<ProjectPage />} />
+        <Route path="/project/:projectName" element={<ProjectDetail />} />
+      </Routes>
+      {/* </PageNavAnimation> */}
     </ThemeProvider>
   );
 }

@@ -7,19 +7,39 @@ import Logo from "../components/main/Logo";
 const cardText = [
   {
     strong: "profile",
-    name: "Hong yu jin",
+    name: "Hong yu jin1",
     position: "Frontend Developer",
     email: "dbwlsxkal95@gmail.com",
     phone: "010-9171-4297",
     city: "Seoul",
+    themeColor: "#FF5733",
   },
   {
     strong: "project",
-    name: "Hong yu jin",
+    name: "Hong yu jin2",
     position: "Frontend Developer",
     email: "dbwlsxkal95@gmail.com",
     phone: "010-9171-4297",
     city: "Seoul",
+    themeColor: "#33FF57",
+  },
+  {
+    strong: "projecttttttttt",
+    name: "Hong yu jin3",
+    position: "Frontend Developer",
+    email: "dbwlsxkal95@gmail.com",
+    phone: "010-9171-4297",
+    city: "Seoul",
+    themeColor: "#3357FF",
+  },
+  {
+    strong: "profileeeeeeeeee",
+    name: "Hong yu jin4",
+    position: "Frontend Developer",
+    email: "dbwlsxkal95@gmail.com",
+    phone: "010-9171-4297",
+    city: "Seoul",
+    themeColor: "#F333FF",
   },
 ];
 
@@ -29,10 +49,6 @@ const MainPage = () => {
       const bodyHeight = document.body.offsetHeight;
       const mainHeight = document.querySelector("main").offsetHeight;
       const cards = document.querySelector(".cards");
-
-      console.log("bodyHeight:", bodyHeight);
-      console.log("mainHeight:", mainHeight);
-      console.log("cards:", cards);
 
       const transY = (window.pageYOffset / (mainHeight - bodyHeight)) * -100;
 

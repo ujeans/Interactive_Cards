@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 // css
 import "../../css/scrollCards.css";
 // components
 import Card from "../card/Card";
+import { useState } from "react";
 
 const CityOnly = ({ city }) => (
   <div className="contents">
@@ -10,13 +12,27 @@ const CityOnly = ({ city }) => (
 );
 
 const ScrollCards = ({ cards, cardText }) => {
-  return (
-    // <div>
+  const navigate = useNavigate();
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
+  const onClickCard = (projectName, themeColor) => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      navigate(`/project/${projectName}`, { state: { themeColor } });
+    }, 800); // 애니메이션 시간과 일치하도록 설정
+  };
+  return (
     <main>
       <div className="cards">
         {cards.map((c, index) => (
-          <a href="#" key={index} className="stack">
+          <a
+            href="#"
+            key={index}
+            className="stack"
+            onClick={() =>
+              onClickCard(cardText[c].name, cardText[c].themeColor)
+            }
+          >
             <div className="card top">
               <Card {...cardText[c]} />
             </div>
@@ -34,7 +50,6 @@ const ScrollCards = ({ cards, cardText }) => {
         ))}
       </div>
     </main>
-    // </div>
   );
 };
 
