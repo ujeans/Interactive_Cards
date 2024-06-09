@@ -1,0 +1,12 @@
+.stack:nth-of-type(even) .contents {
+  color: #fff;
+}
+.contents h2 {
+  color: #aff;
+  font-size: 2em;
+  font-weight: 400;
+  margin-bottom: 0.25em;
+}
+.contents span {
+  margin-right: 0.75em;
+}

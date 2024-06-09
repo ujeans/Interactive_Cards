@@ -1,98 +1,86 @@
-import React from "react";
-import styled, { keyframes } from "styled-components";
+import React, { useEffect } from "react";
+// css
+import "../css/projectPage.css";
+// components
 import Card from "../components/card/Card";
 
-const projects = [
+const cardText = [
   {
-    id: 1,
-    title: "Project 1",
-    image: "path_to_image_1",
+    strong: "profile",
+    name: "Hong yu jin",
+    position: "Frontend Developer",
+    email: "dbwlsxkal95@gmail.com",
+    phone: "010-9171-4297",
+    city: "Seoul",
   },
   {
-    id: 2,
-    title: "Project 2",
-    image: "path_to_image_2",
-  },
-  {
-    id: 3,
-    title: "Project 3",
-    image: "path_to_image_3",
-  },
-  {
-    id: 4,
-    title: "Project 4",
-    image: "path_to_image_4",
-  },
-  {
-    id: 5,
-    title: "Project 5",
-    image: "path_to_image_5",
-  },
-  {
-    id: 6,
-    title: "Project 6",
-    image: "path_to_image_6",
+    strong: "project",
+    name: "Hong yu jin",
+    position: "Frontend Developer",
+    email: "dbwlsxkal95@gmail.com",
+    phone: "010-9171-4297",
+    city: "Seoul",
   },
 ];
 
+const CityOnly = ({ city }) => (
+  <div className="contents">
+    <div className="city">{city}</div>
+  </div>
+);
+
 const ProjectPage = () => {
-  const angleStep = 360 / projects.length;
+  useEffect(() => {
+    const scrollGrid = () => {
+      const bodyHeight = document.body.offsetHeight;
+      const mainHeight = document.querySelector("main").offsetHeight;
+      const cards = document.querySelector(".cards");
+
+      console.log("bodyHeight:", bodyHeight);
+      console.log("mainHeight:", mainHeight);
+      console.log("cards:", cards);
+
+      const transY = (window.pageYOffset / (mainHeight - bodyHeight)) * -100;
+
+      cards.style.setProperty("--scroll", transY + "%");
+    };
+
+    window.addEventListener("resize", scrollGrid);
+    window.addEventListener("scroll", scrollGrid);
+
+    scrollGrid();
+
+    return () => {
+      window.removeEventListener("resize", scrollGrid);
+      window.removeEventListener("scroll", scrollGrid);
+    };
+  }, []);
+
+  const cards = Array.from({ length: 36 }, (_, i) => i % cardText.length);
 
   return (
-    <AppContainer>
-      <Circle>
-        {projects.map((project, index) => (
-          <CircleItem
-            key={project.id}
-            style={{
-              transform: `translate(-50%, -50%) rotate(${
-                index * angleStep
-              }deg) translateY(-500px) rotateX(90deg)`,
-            }}
-          >
-            <Card id={project.id} title={project.title} image={project.image} />
-          </CircleItem>
+    <main>
+      <div className="cards">
+        {cards.map((c, index) => (
+          <a href="#" key={index} className="stack">
+            <div className="card top">
+              <Card {...cardText[c]} />
+            </div>
+            <div className="card mid-top">
+              <CityOnly city={cardText[c].city} />
+            </div>
+            <div className="card mid-bottom">
+              <CityOnly city={cardText[c].city} />
+            </div>
+            <div className="card bottom">
+              <CityOnly city={cardText[c].city} />
+            </div>
+            <div className="card shadow" />
+          </a>
         ))}
-      </Circle>
-    </AppContainer>
+      </div>
+    </main>
   );
 };
 
 export default ProjectPage;
-
-const rotateAnimation = keyframes`
-  0% {
-    transform: rotateX(-100deg) rotate(0);
-  }
-  100% {
-    transform: rotateX(-100deg) rotate(-360deg);
-  }
-`;
-
-const AppContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden;
-  margin: 0;
-  background-color: #fcf3eb;
-  /* background-color: #1e68b6; */
-`;
-
-const Circle = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  transform-style: preserve-3d;
-  animation: ${rotateAnimation} 30s linear infinite;
-  position: relative;
-  width: 600px;
-  height: 600px;
-`;
-
-const CircleItem = styled.li`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-`;
