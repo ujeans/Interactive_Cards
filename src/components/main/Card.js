@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Logo from "../common/Log";
 
 const Card = ({ card }) => {
-  console.log(card.themeColor);
   return (
     <Content>
       <ProjectName themeColor={card.themeColor}>{card.projectName}</ProjectName>
@@ -12,7 +11,7 @@ const Card = ({ card }) => {
       <br />
       <br />
       <br />
-      <div>{card.address}</div>
+      <div>{card.date}</div>
       <Logo top="40%" right="1%" fontSize="0.5em" />
     </Content>
   );

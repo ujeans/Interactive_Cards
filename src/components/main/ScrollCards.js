@@ -5,9 +5,9 @@ import { useState } from "react";
 // components
 import Card from "./Card";
 
-const CityOnly = ({ city }) => (
+const DateOnly = ({ date }) => (
   <Contents>
-    <City>{city}</City>
+    <Date>{date}</Date>
   </Contents>
 );
 
@@ -26,36 +26,23 @@ const ScrollCards = ({ cards, cardWrapperRef }) => {
       <Main>
         <Cards ref={cardWrapperRef}>
           {cards.map((card, index) => {
-            console.log(card.city);
             return (
               <Stack
                 key={index}
                 href="#"
                 onClick={() => onClickCard(card.projectName, card.themeColor)}
               >
-                <CardWrapper
-                  // style={{ backgroundColor: card.themeColor }}
-                  className="top"
-                >
+                <CardWrapper className="top">
                   <Card card={card} />
                 </CardWrapper>
-                <CardWrapper
-                  // style={{ backgroundColor: card.themeColor }}
-                  className="mid-top"
-                >
-                  <CityOnly city={card.city} />
+                <CardWrapper className="mid-top">
+                  <DateOnly date={card.date} />
                 </CardWrapper>
-                <CardWrapper
-                  // style={{ backgroundColor: card.themeColor }}
-                  className="mid-bottom"
-                >
-                  <CityOnly city={card.city} />
+                <CardWrapper className="mid-bottom">
+                  <DateOnly date={card.date} />
                 </CardWrapper>
-                <CardWrapper
-                  // style={{ backgroundColor: card.themeColor }}
-                  className="bottom"
-                >
-                  <CityOnly city={card.city} />
+                <CardWrapper className="bottom">
+                  <DateOnly date={card.date} />
                 </CardWrapper>
                 <CardWrapper className="shadow" />
               </Stack>
@@ -212,6 +199,6 @@ const Contents = styled.div`
   -webkit-font-smoothing: antialiased;
 `;
 
-const City = styled.div`
+const Date = styled.div`
   margin-top: 11.75em;
 `;
