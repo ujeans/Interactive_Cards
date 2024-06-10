@@ -55,7 +55,6 @@ const ProjectDetail = () => {
   const cardRef = useRef(null);
   const intervalRef = useRef(null);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
-  const [isAnimating, setIsAnimating] = useState(true);
 
   useEffect(() => {
     if (count === 0) {
@@ -66,6 +65,9 @@ const ProjectDetail = () => {
 
   useEffect(() => {
     const startInterval = () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
       intervalRef.current = setInterval(() => {
         setCount(prevCount => prevCount - 1);
       }, 1000);
@@ -75,7 +77,7 @@ const ProjectDetail = () => {
 
     const handleAnimationEnd = () => {
       startInterval();
-      setIsAnimating(false);
+      setIsInitialLoad(false);
     };
 
     if (isInitialLoad) {
@@ -85,13 +87,15 @@ const ProjectDetail = () => {
     }
 
     return () => {
-      clearInterval(intervalRef.current);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
       cardElement.removeEventListener("animationend", handleAnimationEnd);
     };
   }, [currentIndex, isInitialLoad]);
 
   const handleNextCard = () => {
-    setIsAnimating(false);
+    setIsInitialLoad(false);
     const nextIndex = (currentIndex + 1) % cardText.length;
     setCurrentIndex(nextIndex);
     navigate(`/project/${cardText[nextIndex].projectName}`, {
@@ -101,7 +105,11 @@ const ProjectDetail = () => {
 
   return (
     <Container themeColor={cardText[currentIndex].themeColor}>
-      <CardWrapper key={currentIndex} ref={cardRef} isAnimating={isAnimating}>
+      <CardWrapper
+        key={currentIndex}
+        ref={cardRef}
+        isInitialLoad={isInitialLoad}
+      >
         <Card card={cardText[currentIndex]} />
       </CardWrapper>
       <Button onClick={handleNextCard}>{count}</Button>
@@ -151,8 +159,8 @@ const CardWrapper = styled.div`
   transition: all 0.3s;
   background-color: #f5f5f5;
   box-shadow: -1px -1px 0 rgba(0, 0, 0, 0.2) inset;
-  ${({ isAnimating }) =>
-    isAnimating &&
+  ${({ isInitialLoad }) =>
+    isInitialLoad &&
     css`
       animation: ${slideIn} 1.5s ease-in-out forwards;
     `}
