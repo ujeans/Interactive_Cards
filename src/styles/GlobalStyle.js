@@ -13,6 +13,15 @@ const GlobalStyle = createGlobalStyle`
     height: 100vh;
     overflow-x: hidden;
   }
+
+  *,
+*:before,
+*:after {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 `;
 
 export default GlobalStyle;

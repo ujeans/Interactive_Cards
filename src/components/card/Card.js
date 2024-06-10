@@ -1,27 +1,48 @@
-// css
-import "../../css/card.css";
+import styled from "styled-components";
 
-const Card = ({ strong, name, position, email, phone, address, city }) => {
+const Card = ({ card }) => {
   return (
-    <div className="contents">
-      <h2>
-        <strong>ULog </strong>
-        {strong}
-      </h2>
-      <h3>{name}</h3>
-      <div>{position}</div>
+    <Content>
+      <ProjectName>{card.projectName}</ProjectName>
+      <Position>{card.position}</Position>
       <br />
-      <span>✉️</span>
-      {email}
+      <Span>✉️</Span>
+      {card.email}
       <br />
-      <span>📞</span>
-      {phone}
+      <Span>📞</Span>
+      {card.phone}
       <br />
       <br />
-      <div>{address}</div>
-      <div>{city}</div>
-    </div>
+      <div>{card.address}</div>
+      <div>{card.city}</div>
+    </Content>
   );
 };
 
 export default Card;
+
+const Content = styled.div`
+  color: #fff;
+  font-size: 0.5em;
+  line-height: 1.25;
+  -webkit-font-smoothing: antialiased;
+
+  .stack:nth-of-type(even) & {
+    color: #fff;
+  }
+`;
+
+const ProjectName = styled.h2`
+  color: #aff;
+  font-size: 2em;
+  font-weight: 400;
+  margin-bottom: 0.25em;
+`;
+
+const Position = styled.h3`
+  margin-bottom: 0.25em;
+`;
+
+const Span = styled.span`
+  margin-right: 0.75em;
+`;

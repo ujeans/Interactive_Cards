@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Helmet } from "react-helmet-async";
 // components
 import ScrollCards from "../components/main/ScrollCards";
@@ -6,53 +6,44 @@ import Logo from "../components/main/Logo";
 
 const cardText = [
   {
-    strong: "profile",
-    name: "Hong yu jin1",
+    projectName: "Naver Webtoon",
     position: "Frontend Developer",
     email: "dbwlsxkal95@gmail.com",
     phone: "010-9171-4297",
     city: "Seoul",
-    themeColor: "#FF5733",
+    themeColor: "#3d7b5b",
   },
   {
-    strong: "project",
-    name: "Hong yu jin2",
+    projectName: "Yeoreum",
     position: "Frontend Developer",
     email: "dbwlsxkal95@gmail.com",
     phone: "010-9171-4297",
     city: "Seoul",
-    themeColor: "#33FF57",
+    themeColor: "#aac9d1",
   },
   {
-    strong: "projecttttttttt",
-    name: "Hong yu jin3",
+    projectName: "StudyMate",
     position: "Frontend Developer",
     email: "dbwlsxkal95@gmail.com",
     phone: "010-9171-4297",
     city: "Seoul",
-    themeColor: "#3357FF",
-  },
-  {
-    strong: "profileeeeeeeeee",
-    name: "Hong yu jin4",
-    position: "Frontend Developer",
-    email: "dbwlsxkal95@gmail.com",
-    phone: "010-9171-4297",
-    city: "Seoul",
-    themeColor: "#F333FF",
+    themeColor: "#cf5932",
   },
 ];
 
 const MainPage = () => {
+  const cardWrapperRef = useRef(null);
+
   useEffect(() => {
     const scrollGrid = () => {
       const bodyHeight = document.body.offsetHeight;
       const mainHeight = document.querySelector("main").offsetHeight;
-      const cards = document.querySelector(".cards");
+      const cardWrapper = cardWrapperRef.current;
 
-      const transY = (window.pageYOffset / (mainHeight - bodyHeight)) * -100;
-
-      cards.style.setProperty("--scroll", transY + "%");
+      if (cardWrapper) {
+        const transY = (window.pageYOffset / (mainHeight - bodyHeight)) * -100;
+        cardWrapper.style.setProperty("--scroll", transY + "%");
+      }
     };
 
     window.addEventListener("resize", scrollGrid);
@@ -66,7 +57,10 @@ const MainPage = () => {
     };
   }, []);
 
-  const cards = Array.from({ length: 36 }, (_, i) => i % cardText.length);
+  const cards = Array.from(
+    { length: 36 },
+    (_, i) => cardText[i % cardText.length]
+  );
 
   return (
     <>
@@ -75,7 +69,7 @@ const MainPage = () => {
       </Helmet>
 
       <Logo />
-      <ScrollCards cards={cards} cardText={cardText} />
+      <ScrollCards cards={cards} cardWrapperRef={cardWrapperRef} />
     </>
   );
 };

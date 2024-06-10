@@ -24,21 +24,17 @@ const Logo = () => {
 export default Logo;
 
 const LogoContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100vh;
-`;
-
-const StyledULog = styled.button`
   position: absolute;
   top: 25%;
   right: 2%;
   transform: rotate(90deg);
   transform-origin: right top;
+`;
+
+const StyledULog = styled.button`
   font-size: 4rem;
   font-weight: bold;
   background: none;
   color: #feb8a6;
-
   cursor: pointer;
 `;
