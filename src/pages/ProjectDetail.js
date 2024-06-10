@@ -1,38 +1,110 @@
-import React from "react";
-import { useParams, useLocation } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
+import React, { useEffect, useState, useRef } from "react";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
+import styled, { keyframes, css } from "styled-components";
+// components
+import Card from "../components/main/Card";
+
+const cardText = [
+  {
+    id: 1,
+    projectName: "dsds",
+    position: "Front-end / Design",
+    date: "Jun 2024",
+    themeColor: "#f2332e",
+  },
+  {
+    id: 2,
+    projectName: "Card Project",
+    position: "Front-end / Design",
+    date: "Jun 2024",
+    themeColor: "#e97640",
+  },
+  {
+    id: 3,
+    projectName: "Naver Webtoon",
+    position: "Front-end",
+    date: "May 2024",
+    themeColor: "#0a9b4e",
+  },
+  {
+    id: 4,
+    projectName: "Yeoreum",
+    position: "Front-end / Design",
+    date: "Sep 2022 ~ Feb 2023",
+    themeColor: "#3a74ba",
+  },
+  {
+    id: 5,
+    projectName: "StudyMate",
+    position: "Front-end / Design",
+    date: "Dec 2022",
+    themeColor: "#df589a",
+  },
+];
 
 const ProjectDetail = () => {
   const { projectName } = useParams();
   const location = useLocation();
-  const { themeColor } = location.state || { themeColor: "#151226" }; // 기본값 설정
+  const navigate = useNavigate();
+  const card = location.state.card || {}; // card 객체 가져오기
+
+  const [currentIndex, setCurrentIndex] = useState(
+    cardText.findIndex(c => c.projectName === card.projectName)
+  );
+  const [count, setCount] = useState(5);
+  const cardRef = useRef(null);
+  const intervalRef = useRef(null);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [isAnimating, setIsAnimating] = useState(true);
+
+  useEffect(() => {
+    if (count === 0) {
+      handleNextCard();
+      setCount(5);
+    }
+  }, [count]);
+
+  useEffect(() => {
+    const startInterval = () => {
+      intervalRef.current = setInterval(() => {
+        setCount(prevCount => prevCount - 1);
+      }, 1000);
+    };
+
+    const cardElement = cardRef.current;
+
+    const handleAnimationEnd = () => {
+      startInterval();
+      setIsAnimating(false);
+    };
+
+    if (isInitialLoad) {
+      cardElement.addEventListener("animationend", handleAnimationEnd);
+    } else {
+      startInterval();
+    }
+
+    return () => {
+      clearInterval(intervalRef.current);
+      cardElement.removeEventListener("animationend", handleAnimationEnd);
+    };
+  }, [currentIndex, isInitialLoad]);
+
+  const handleNextCard = () => {
+    setIsAnimating(false);
+    const nextIndex = (currentIndex + 1) % cardText.length;
+    setCurrentIndex(nextIndex);
+    navigate(`/project/${cardText[nextIndex].projectName}`, {
+      state: { card: cardText[nextIndex] },
+    });
+  };
 
   return (
-    <Container themeColor={themeColor}>
-      <ContainerContent>
-        <ContainerContentInner>
-          <Title>
-            <h1>{projectName}</h1>
-          </Title>
-          <Par>
-            <p>
-              Cupiditate alias odio omnis minima veritatis saepe porro,
-              repellendus natus vitae ex.
-            </p>
-          </Par>
-          <Btns>
-            <BtnsMore>See more</BtnsMore>
-          </Btns>
-        </ContainerContentInner>
-      </ContainerContent>
-      <ContainerOuterImg>
-        <div className="img-inner">
-          <ContainerImg
-            src="https://images.unsplash.com/photo-1517911041065-4960862d38f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-            alt="Image"
-          />
-        </div>
-      </ContainerOuterImg>
+    <Container themeColor={cardText[currentIndex].themeColor}>
+      <CardWrapper key={currentIndex} ref={cardRef} isAnimating={isAnimating}>
+        <Card card={cardText[currentIndex]} />
+      </CardWrapper>
+      <Button onClick={handleNextCard}>{count}</Button>
     </Container>
   );
 };
@@ -48,15 +120,6 @@ const slideIn = keyframes`
   }
 `;
 
-const slideUp = keyframes`
-  0% {
-    transform: translateY(300px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-`;
-
 const expand = keyframes`
   0% {
     transform: translateX(1400px);
@@ -67,81 +130,45 @@ const expand = keyframes`
 `;
 
 const Container = styled.div`
-  display: flex;
+  position: relative;
   height: 100vh;
-  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   color: #fff;
-  animation: ${expand} 0.8s ease forwards;
   background-color: ${({ themeColor }) => themeColor || "#151226"};
-  position: relative;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  transition: all 0.8s ease;
+  animation: ${expand} 0.8s ease forwards;
+  transition: background-color 0.3s ease;
 `;
 
-const ContainerContent = styled.div`
-  width: 50%;
+const CardWrapper = styled.div`
+  position: absolute;
+  width: 350px;
+  height: 200px;
+  color: #000;
+  padding: 0.75em;
+  transition: all 0.3s;
+  background-color: #f5f5f5;
+  box-shadow: -1px -1px 0 rgba(0, 0, 0, 0.2) inset;
+  ${({ isAnimating }) =>
+    isAnimating &&
+    css`
+      animation: ${slideIn} 1.5s ease-in-out forwards;
+    `}
 `;
 
-const ContainerContentInner = styled.div`
-  width: 80%;
-  margin-left: 80px;
-`;
-
-const ContainerOuterImg = styled.div`
-  margin: 50px;
-  width: 50%;
-  overflow: hidden;
-`;
-
-const ContainerImg = styled.img`
-  width: 100%;
-  animation: ${slideIn} 1.5s ease-in-out forwards;
-`;
-
-const Title = styled.div`
-  overflow: hidden;
-  height: auto;
-
-  h1 {
-    font-size: 40px;
-    color: #bf307f;
-    margin-bottom: 20px;
-    transform: translateY(100px);
-    animation: ${slideUp} 0.8s ease forwards 0.5s;
-  }
-`;
-
-const Par = styled.div`
-  height: auto;
-  overflow: hidden;
-
-  p {
-    line-height: 28px;
-    transform: translateY(300px);
-    animation: ${slideUp} 0.8s ease-in-out forwards 0.8s;
-  }
-`;
-
-const Btns = styled.div`
-  height: 100%;
-  position: relative;
-  width: 150px;
-  overflow: hidden;
-`;
-
-const BtnsMore = styled.button`
-  background: transparent;
-  border: 1px solid #bf307f;
-  border-radius: 50px;
-  padding: 8px 12px;
-  color: #bf307f;
+const Button = styled.button`
+  margin-top: 300px;
+  padding: 10px 20px;
   font-size: 16px;
-  text-transform: uppercase;
-  position: relative;
-  margin-top: 15px;
-  outline: none;
-  transform: translateY(50px);
-  animation: ${slideUp} 0.8s ease-in-out forwards 1s;
+  color: #fff;
+  background-color: #bf307f;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #a0276b;
+  }
 `;

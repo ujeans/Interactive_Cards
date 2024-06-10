@@ -15,10 +15,11 @@ const ScrollCards = ({ cards, cardWrapperRef }) => {
   const navigate = useNavigate();
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const onClickCard = (projectName, themeColor) => {
+  const onClickCard = card => {
+    console.log("a", card);
     setIsTransitioning(true);
     setTimeout(() => {
-      navigate(`/project/${projectName}`, { state: { themeColor } });
+      navigate(`/project/${card.projectName}`, { state: { card } });
     }, 800);
   };
   return (
@@ -27,11 +28,7 @@ const ScrollCards = ({ cards, cardWrapperRef }) => {
         <Cards ref={cardWrapperRef}>
           {cards.map((card, index) => {
             return (
-              <Stack
-                key={index}
-                href="#"
-                onClick={() => onClickCard(card.projectName, card.themeColor)}
-              >
+              <Stack key={index} href="#" onClick={() => onClickCard(card)}>
                 <CardWrapper className="top">
                   <Card card={card} />
                 </CardWrapper>
