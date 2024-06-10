@@ -2,32 +2,59 @@ import React, { useEffect, useRef } from "react";
 import { Helmet } from "react-helmet-async";
 // components
 import ScrollCards from "../components/main/ScrollCards";
-import Logo from "../components/main/Logo";
+import Logo from "../components/common/Log";
 
 const cardText = [
   {
-    projectName: "Naver Webtoon",
-    position: "Frontend Developer",
+    projectName: "dsds",
+    position: "Front-end / Design",
     email: "dbwlsxkal95@gmail.com",
     phone: "010-9171-4297",
+    address: "Jun 2024",
     city: "Seoul",
-    themeColor: "#3d7b5b",
+    // themeColor: "#7ec198".,
+    themeColor: "#f2332e",
+  },
+  {
+    projectName: "Card Project",
+    position: "Front-end / Design",
+    email: "dbwlsxkal95@gmail.com",
+    phone: "010-9171-4297",
+    address: "Jun 2024",
+    city: "Seoul",
+    // themeColor: "#f6eb68",
+    themeColor: "#e97640",
+  },
+
+  {
+    projectName: "Naver Webtoon",
+    position: "Front-end",
+    email: "dbwlsxkal95@gmail.com",
+    phone: "010-9171-4297",
+    address: "May 2024",
+    city: "Seoul",
+    // themeColor: "#ef94b9",
+    themeColor: "#0a9b4e",
   },
   {
     projectName: "Yeoreum",
-    position: "Frontend Developer",
+    position: "Front-end / Design",
     email: "dbwlsxkal95@gmail.com",
     phone: "010-9171-4297",
+    address: "Sep 2022 ~ Feb 2023",
     city: "Seoul",
-    themeColor: "#aac9d1",
+    // themeColor: "#87cfed",
+    themeColor: "#3a74ba",
   },
   {
     projectName: "StudyMate",
-    position: "Frontend Developer",
+    position: "Front-end / Design",
     email: "dbwlsxkal95@gmail.com",
     phone: "010-9171-4297",
+    address: "Dec 2022",
     city: "Seoul",
-    themeColor: "#cf5932",
+    // themeColor: "#f2a75b",
+    themeColor: "#df589a",
   },
 ];
 

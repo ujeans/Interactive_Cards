@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 // components
-import Card from "../card/Card";
+import Card from "./Card";
 
 const CityOnly = ({ city }) => (
   <Contents>
@@ -34,25 +34,25 @@ const ScrollCards = ({ cards, cardWrapperRef }) => {
                 onClick={() => onClickCard(card.projectName, card.themeColor)}
               >
                 <CardWrapper
-                  style={{ backgroundColor: card.themeColor }}
+                  // style={{ backgroundColor: card.themeColor }}
                   className="top"
                 >
                   <Card card={card} />
                 </CardWrapper>
                 <CardWrapper
-                  style={{ backgroundColor: card.themeColor }}
+                  // style={{ backgroundColor: card.themeColor }}
                   className="mid-top"
                 >
                   <CityOnly city={card.city} />
                 </CardWrapper>
                 <CardWrapper
-                  style={{ backgroundColor: card.themeColor }}
+                  // style={{ backgroundColor: card.themeColor }}
                   className="mid-bottom"
                 >
                   <CityOnly city={card.city} />
                 </CardWrapper>
                 <CardWrapper
-                  style={{ backgroundColor: card.themeColor }}
+                  // style={{ backgroundColor: card.themeColor }}
                   className="bottom"
                 >
                   <CityOnly city={card.city} />
@@ -170,6 +170,7 @@ const CardWrapper = styled.div`
   background-size: 200% 200%;
   box-shadow: -1px -1px 0 rgba(0, 0, 0, 0.2) inset;
   color: #000;
+  background-color: #f5f5f5;
   padding: 0.75em;
   position: absolute;
   transition: all 0.3s;

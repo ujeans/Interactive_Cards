@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: white;
+      }
+      .circle {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+      }
+      .circle div {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        transform-origin: 90px 90px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .circle .A1 {
+        color: yellow;
+        transform: rotate(45deg) translate(90px);
+      }
+      .circle .R1 {
+        color: red;
+        transform: rotate(90deg) translate(90px);
+      }
+      .circle .I {
+        color: blue;
+        transform: rotate(135deg) translate(90px);
+      }
+      .circle .S {
+        color: green;
+        transform: rotate(180deg) translate(90px);
+      }
+      .circle .O {
+        color: orange;
+        transform: rotate(225deg) translate(90px);
+      }
+      .circle .R2 {
+        color: purple;
+        transform: rotate(270deg) translate(90px);
+      }
+      .circle .A2 {
+        color: pink;
+        transform: rotate(315deg) translate(90px);
+      }
+      .circle .W {
+        color: brown;
+        transform: rotate(0deg) translate(90px);
+      }
+      .center-circle {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: black;
+        top: 75px;
+        left: 75px;
+      }
+    </style>
+    <title>Rotating Text Circle</title>
+  </head>
+  <body>
+    <div class="circle">
+      <div class="A1">Y</div>
+      <div class="R1">U</div>
+      <div class="I">J</div>
+      <div class="S">I</div>
+      <div class="O">N</div>
+      <div class="R2">L</div>
+      <div class="A2">O</div>
+      <div class="W">G</div>
+      <div class="center-circle"></div>
+    </div>
+  </body>
+</html>
