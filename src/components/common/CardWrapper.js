@@ -1,8 +1,21 @@
 import styled, { css, keyframes } from "styled-components";
 
-const CardWrapper = ({ className, children, cardRef, isInitialLoad }) => {
+const CardWrapper = ({
+  className,
+  children,
+  cardRef,
+  isInitialLoad,
+  size,
+  bac,
+}) => {
   return (
-    <Wrapper className={className} ref={cardRef} isInitialLoad={isInitialLoad}>
+    <Wrapper
+      className={className}
+      ref={cardRef}
+      isInitialLoad={isInitialLoad}
+      size={size}
+      bac={bac}
+    >
       {children}
     </Wrapper>
   );
@@ -20,15 +33,20 @@ const slideIn = keyframes`
 `;
 
 const Wrapper = styled.div`
+  width: ${({ size }) => (size ? size.width : "100%")};
+  height: ${({ size }) => (size ? size.height : "100%")};
+  padding: 0.55em;
+  position: absolute;
   background-size: 200% 200%;
   box-shadow: -1px -1px 0 rgba(0, 0, 0, 0.2) inset;
   color: #000;
-  background-color: #f5f5f5;
-  padding: 0.75em;
-  position: absolute;
+  background-color: ${({ bac }) => bac};
   transition: all 0.3s;
-  width: 100%;
-  height: 100%;
+  ${({ size }) =>
+    size &&
+    css`
+      aspect-ratio: ${size.aspectRatio};
+    `}
 
   &.top {
     transform: translateZ(4px);

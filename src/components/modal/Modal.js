@@ -2,6 +2,8 @@ import styled, { css, keyframes } from "styled-components";
 import { useEffect } from "react";
 // components
 import ModalContainer from "./ModalContainer";
+import CardWrapper from "../common/CardWrapper";
+import CardContent from "../common/CardContent";
 
 const Modal = ({ onClose, isClosing, selectedCard, clickPosition }) => {
   const handleClose = () => {
@@ -24,14 +26,15 @@ const Modal = ({ onClose, isClosing, selectedCard, clickPosition }) => {
         clickPosition={clickPosition}
         isClosing={isClosing}
       >
+        <CloseButton onClick={handleClose}>
+          <i className="fa-solid fa-xmark">X</i>
+        </CloseButton>
         <ModalWrap>
-          <CloseButton onClick={handleClose}>
-            <i className="fa-solid fa-xmark"></i>
-          </CloseButton>
-          <Contents>
-            <h1>{selectedCard.projectName}</h1>
-            <Button onClick={handleClose}>Close</Button>
-          </Contents>
+          <CardWrapper
+            size={{ width: "500px", height: "300px", aspectRatio: "4 / 2" }}
+          >
+            <CardContent card={selectedCard} />
+          </CardWrapper>
         </ModalWrap>
       </Overlay>
     </ModalContainer>
