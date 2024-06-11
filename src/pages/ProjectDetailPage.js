@@ -71,17 +71,23 @@ const ProjectDetailPage = () => {
   };
 
   return (
-    <Container
-      themeColor={cardText[currentIndex].themeColor}
-      isClosing={isClosing}
-      x={x}
-      y={y}
-    >
-      <CardWrapper className="card" ref={cardRef} isInitialLoad={isInitialLoad}>
-        <CardContent card={cardText[currentIndex]} />
-      </CardWrapper>
-      <ProgressBtn handleCloseCard={handleCloseCard} count={count} />
-    </Container>
+    <>
+      <Container
+        themeColor={cardText[currentIndex].themeColor}
+        isClosing={isClosing}
+        x={x}
+        y={y}
+      >
+        <CardWrapper
+          className="card"
+          ref={cardRef}
+          isInitialLoad={isInitialLoad}
+        >
+          <CardContent card={cardText[currentIndex]} />
+        </CardWrapper>
+        <ProgressBtn handleCloseCard={handleCloseCard} count={count} />
+      </Container>
+    </>
   );
 };
 
@@ -106,21 +112,24 @@ const contractCircle = keyframes`
 `;
 
 const Container = styled.div`
-  position: relative;
+  position: absolute;
   height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-color: ${({ themeColor }) => themeColor || "#151226"};
+  background-color: ${({ themeColor }) => themeColor || "transparent"};
+  opacity: 1;
   overflow: hidden;
   animation: ${expandCircle} 1.2s ease forwards;
   ${({ isClosing }) =>
     isClosing &&
     css`
       animation: ${contractCircle} 1.2s ease forwards;
+      opacity: 0;
     `}
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, opacity 1.2s ease;
   --x: ${({ x }) => x}px;
   --y: ${({ y }) => y}px;
 `;
