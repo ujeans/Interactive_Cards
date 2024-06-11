@@ -1,4 +1,3 @@
-// src/App.js
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
@@ -6,7 +5,7 @@ import { ThemeProvider } from "styled-components";
 // pages
 import MainPage from "./pages/MainPage";
 import ProfilePage from "./pages/ProfilePage";
-import ProjectDetail from "./pages/ProjectDetail";
+import ProjectDetail from "./pages/ProjectDetailPage";
 
 // styles
 import theme from "./styles/theme";
