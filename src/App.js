@@ -16,16 +16,14 @@ import PageNavAnimation from "./containers/PageNavAnimation";
 import * as loadingTime from "./styles/loadingTime";
 function App() {
   return (
-    <PageNavAnimation limitTime={loadingTime.page}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/project/:projectName" element={<ProjectDetail />} />
-        </Routes>
-      </ThemeProvider>
-    </PageNavAnimation>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/project/:projectName" element={<ProjectDetail />} />
+      </Routes>
+    </ThemeProvider>
   );
 }
 
