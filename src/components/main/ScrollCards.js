@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -15,12 +15,23 @@ const DateOnly = ({ date }) => (
 const ScrollCards = ({ cards, cardWrapperRef }) => {
   const navigate = useNavigate();
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [transitionCard, setTransitionCard] = useState(null);
+  const [transitionPosition, setTransitionPosition] = useState({ x: 0, y: 0 });
 
-  const onClickCard = card => {
+  const onClickCard = (card, index, event) => {
+    const rect = event.target.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    setTransitionCard(index);
+    setTransitionPosition({ x, y });
     setIsTransitioning(true);
+
     setTimeout(() => {
-      navigate(`/project/${card.projectName}`, { state: { card } });
-    }, 800);
+      navigate(`/project/${card.projectName}`, {
+        state: { card, position: { x, y } },
+      });
+    }, 1200); // 애니메이션 시간을 늘려 속도를 느리게 합니다.
   };
 
   return (
@@ -28,8 +39,15 @@ const ScrollCards = ({ cards, cardWrapperRef }) => {
       <Main>
         <Cards ref={cardWrapperRef}>
           {cards.map((card, index) => {
+            const isTransitioningCard =
+              isTransitioning && transitionCard === index;
             return (
-              <Stack key={index} href="#" onClick={() => onClickCard(card)}>
+              <Stack
+                key={index}
+                href="#"
+                onClick={e => onClickCard(card, index, e)}
+                className={isTransitioningCard ? "transitioning" : ""}
+              >
                 <CardWrapper className="top">
                   <CardContent card={card} />
                 </CardWrapper>
@@ -43,6 +61,12 @@ const ScrollCards = ({ cards, cardWrapperRef }) => {
                   <DateOnly date={card.date} />
                 </CardWrapper>
                 <CardWrapper className="shadow" />
+                {isTransitioningCard && (
+                  <TransitionOverlay
+                    x={transitionPosition.x}
+                    y={transitionPosition.y}
+                  />
+                )}
               </Stack>
             );
           })}
@@ -126,6 +150,12 @@ const Stack = styled.a`
   transform-style: preserve-3d;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
+
+  &.transitioning {
+    z-index: 10;
+  }
 
   &:hover .top,
   &:focus .top {
@@ -160,4 +190,27 @@ const Contents = styled.div`
 
 const Date = styled.div`
   margin-top: 11.75em;
+`;
+
+const expandCircle = keyframes`
+  0% {
+    clip-path: circle(0% at var(--x) var(--y));
+  }
+  100% {
+    clip-path: circle(150% at var(--x) var(--y));
+  }
+`;
+
+const TransitionOverlay = styled.div`
+  position: absolute;
+  top: ${({ y }) => y}px;
+  left: ${({ x }) => x}px;
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ${expandCircle} 1.2s ease forwards;
+  --x: ${({ x }) => x}px;
+  --y: ${({ y }) => y}px;
 `;

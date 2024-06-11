@@ -11,7 +11,8 @@ import ProgressBtn from "../components/projectDetail/ProgressBtn";
 const ProjectDetailPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const card = location.state.card || {};
+  const card = location.state?.card || {};
+  const { x, y } = location.state?.position || { x: "50%", y: "50%" };
 
   const [currentIndex, setCurrentIndex] = useState(
     cardText.findIndex(c => c.projectName === card.projectName)
@@ -66,13 +67,15 @@ const ProjectDetailPage = () => {
     setIsClosing(true);
     setTimeout(() => {
       navigate("/");
-    }, 800);
+    }, 1200); // 애니메이션 시간을 늘려 속도를 느리게 합니다.
   };
 
   return (
     <Container
       themeColor={cardText[currentIndex].themeColor}
       isClosing={isClosing}
+      x={x}
+      y={y}
     >
       <CardWrapper className="card" ref={cardRef} isInitialLoad={isInitialLoad}>
         <CardContent card={cardText[currentIndex]} />
@@ -84,21 +87,21 @@ const ProjectDetailPage = () => {
 
 export default ProjectDetailPage;
 
-const expand = keyframes`
+const expandCircle = keyframes`
   0% {
-    transform: translateX(1400px);
+    clip-path: circle(0% at var(--x) var(--y));
   }
   100% {
-    transform: translateX(0px);
+    clip-path: circle(150% at var(--x) var(--y));
   }
 `;
 
-const contract = keyframes`
+const contractCircle = keyframes`
   0% {
-    transform: translateX(0px);
+    clip-path: circle(150% at var(--x) var(--y));
   }
   100% {
-    transform: translateX(1400px);
+    clip-path: circle(0% at var(--x) var(--y));
   }
 `;
 
@@ -110,14 +113,14 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: ${({ themeColor }) => themeColor || "#151226"};
-  animation: ${expand} 0.8s ease forwards;
+  overflow: hidden;
+  animation: ${expandCircle} 1.2s ease forwards;
   ${({ isClosing }) =>
-    isClosing
-      ? css`
-          animation: ${contract} 0.8s ease forwards;
-        `
-      : css`
-          animation: ${expand} 0.8s ease forwards;
-        `};
+    isClosing &&
+    css`
+      animation: ${contractCircle} 1.2s ease forwards;
+    `}
   transition: background-color 0.3s ease;
+  --x: ${({ x }) => x}px;
+  --y: ${({ y }) => y}px;
 `;
