@@ -5,6 +5,7 @@ export const cardText = [
     position: "Front-end / Design",
     date: "Jun 2024",
     themeColor: "#f2332e",
+    modalColor: "#F35C58",
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ export const cardText = [
     position: "Front-end / Design",
     date: "Jun 2024",
     themeColor: "#e97640",
+    modalColor: "#F29063",
   },
   {
     id: 3,
@@ -19,6 +21,7 @@ export const cardText = [
     position: "Front-end",
     date: "May 2024",
     themeColor: "#0a9b4e",
+    modalColor: "#2DC574",
   },
   {
     id: 4,
@@ -26,6 +29,7 @@ export const cardText = [
     position: "Front-end / Design",
     date: "Sep 2022 ~ Feb 2023",
     themeColor: "#3a74ba",
+    modalColor: "#548DD1",
   },
   {
     id: 5,
@@ -33,5 +37,6 @@ export const cardText = [
     position: "Front-end / Design",
     date: "Dec 2022",
     themeColor: "#df589a",
+    modalColor: "#E66FA9",
   },
 ];

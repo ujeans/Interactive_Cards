@@ -1,21 +1,31 @@
 import styled from "styled-components";
+import { useEffect } from "react";
 // components
 import ModalContainer from "./ModalContainer";
 
-const Modal = ({ onClose }) => {
+const Modal = ({ onClose, selectedCard }) => {
   const handleClose = () => {
     onClose?.();
   };
 
+  useEffect(() => {
+    const $body = document.querySelector("body");
+    const overflow = $body.style.overflow;
+    $body.style.overflow = "hidden";
+    return () => {
+      $body.style.overflow = overflow;
+    };
+  }, []);
+
   return (
     <ModalContainer>
-      <Overlay>
+      <Overlay themeColor={selectedCard.modalColor}>
         <ModalWrap>
           <CloseButton onClick={handleClose}>
             <i className="fa-solid fa-xmark"></i>
           </CloseButton>
           <Contents>
-            <h1>This is a Modal Dialog</h1>
+            <h1>{selectedCard.projectName}</h1>
             <Button onClick={handleClose}>Close</Button>
           </Contents>
         </ModalWrap>
@@ -25,6 +35,7 @@ const Modal = ({ onClose }) => {
 };
 
 export default Modal;
+
 const Overlay = styled.div`
   position: fixed;
   width: 100%;
@@ -33,16 +44,16 @@ const Overlay = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: ${({ themeColor }) => themeColor};
+  z-index: 9999;
 `;
 
 const ModalWrap = styled.div`
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
   background-color: #fff;
   position: relative;
   display: flex;
