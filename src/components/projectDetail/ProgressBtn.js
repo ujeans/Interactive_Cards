@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const ProgressBtn = ({ handleNextCard, count }) => {
-  return <Button onClick={handleNextCard}>{count}</Button>;
+const ProgressBtn = ({ handleCloseCard, count }) => {
+  return <Button onClick={handleCloseCard}>{count}</Button>;
 };
 
 export default ProgressBtn;

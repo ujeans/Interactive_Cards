@@ -16,12 +16,12 @@ const ScrollCards = ({ cards, cardWrapperRef }) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const onClickCard = card => {
-    console.log("a", card);
     setIsTransitioning(true);
     setTimeout(() => {
       navigate(`/project/${card.projectName}`, { state: { card } });
     }, 800);
   };
+
   return (
     <Container>
       <Main>

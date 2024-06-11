@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import React, { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 // data
@@ -11,19 +11,21 @@ const ProjectDetailPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const card = location.state.card || {};
+  const initialPosition = location.state.position || {};
 
   const [currentIndex, setCurrentIndex] = useState(
     cardText.findIndex(c => c.projectName === card.projectName)
   );
   const [count, setCount] = useState(5);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [isExiting, setIsExiting] = useState(false);
 
   const cardRef = useRef(null);
   const intervalRef = useRef(null);
 
   useEffect(() => {
     if (count === 0) {
-      handleNextCard();
+      // handleNextCard();
       setCount(5);
     }
   }, [count]);
@@ -68,6 +70,13 @@ const ProjectDetailPage = () => {
     });
   };
 
+  const handleCloseCard = () => {
+    setIsExiting(true);
+    setTimeout(() => {
+      navigate("/", { state: { initialPosition } });
+    }, 800);
+  };
+
   return (
     <Container themeColor={cardText[currentIndex].themeColor}>
       <CardWrapper
@@ -76,7 +85,7 @@ const ProjectDetailPage = () => {
         cardRef={cardRef}
         isInitialLoad={isInitialLoad}
       />
-      <ProgressBtn handleNextCard={handleNextCard} count={count} />
+      <ProgressBtn handleCloseCard={handleCloseCard} count={count} />
     </Container>
   );
 };
