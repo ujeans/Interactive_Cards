@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 // components
-import Card from "./Card";
+import CardWrapper from "../common/CardWrapper";
+import CardContent from "../common/CardContent";
 
 const DateOnly = ({ date }) => (
   <Contents>
@@ -30,7 +31,7 @@ const ScrollCards = ({ cards, cardWrapperRef }) => {
             return (
               <Stack key={index} href="#" onClick={() => onClickCard(card)}>
                 <CardWrapper className="top">
-                  <Card card={card} />
+                  <CardContent card={card} />
                 </CardWrapper>
                 <CardWrapper className="mid-top">
                   <DateOnly date={card.date} />
@@ -147,45 +148,6 @@ const Stack = styled.a`
     filter: blur(5px);
     -webkit-filter: blur(5px);
     opacity: 0.2;
-  }
-`;
-
-const CardWrapper = styled.div`
-  background-size: 200% 200%;
-  box-shadow: -1px -1px 0 rgba(0, 0, 0, 0.2) inset;
-  color: #000;
-  background-color: #f5f5f5;
-  padding: 0.75em;
-  position: absolute;
-  transition: all 0.3s;
-  width: 100%;
-  height: 100%;
-
-  &.top {
-    transform: translateZ(4px);
-    z-index: 4;
-  }
-
-  &.mid-top {
-    transform: translateZ(3px);
-    z-index: 3;
-  }
-
-  &.mid-bottom {
-    transform: translateZ(2px);
-    z-index: 2;
-  }
-
-  &.bottom {
-    transform: translateZ(2px);
-    z-index: 2;
-  }
-
-  &.shadow {
-    background: #000;
-    filter: blur(2px);
-    -webkit-filter: blur(2px);
-    opacity: 0.4;
   }
 `;
 

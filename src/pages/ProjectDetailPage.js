@@ -1,25 +1,23 @@
-import styled, { css, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 import React, { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 // data
 import { cardText } from "../data/cardData";
 // components
-import CardWrapper from "../components/projectDetail/CardWrapper";
+import CardWrapper from "../components/common/CardWrapper";
+import CardContent from "../components/common/CardContent";
 import ProgressBtn from "../components/projectDetail/ProgressBtn";
 
 const ProjectDetailPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const card = location.state.card || {};
-  const initialPosition = location.state.position || {};
 
   const [currentIndex, setCurrentIndex] = useState(
     cardText.findIndex(c => c.projectName === card.projectName)
   );
   const [count, setCount] = useState(5);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
-  // const [isExiting, setIsExiting] = useState(false);
-  const [isClosing, setIsClosing] = useState(false); // 새로운 상태 추가
 
   const cardRef = useRef(null);
   const intervalRef = useRef(null);
@@ -48,9 +46,9 @@ const ProjectDetailPage = () => {
       setIsInitialLoad(false);
     };
 
-    if (isInitialLoad) {
+    if (isInitialLoad && cardElement) {
       cardElement.addEventListener("animationend", handleAnimationEnd);
-    } else {
+    } else if (cardElement) {
       startInterval();
     }
 
@@ -58,7 +56,9 @@ const ProjectDetailPage = () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
-      cardElement.removeEventListener("animationend", handleAnimationEnd);
+      if (cardElement) {
+        cardElement.removeEventListener("animationend", handleAnimationEnd);
+      }
     };
   }, [currentIndex, isInitialLoad]);
 
@@ -71,25 +71,12 @@ const ProjectDetailPage = () => {
     });
   };
 
-  const handleCloseCard = () => {
-    setIsClosing(true); // 애니메이션 시작
-    setTimeout(() => {
-      navigate("/");
-    }, 800); // 애니메이션 시간과 동일하게 설정
-  };
-
   return (
-    <Container
-      themeColor={cardText[currentIndex].themeColor}
-      isClosing={isClosing}
-    >
-      <CardWrapper
-        cardText={cardText}
-        currentIndex={currentIndex}
-        cardRef={cardRef}
-        isInitialLoad={isInitialLoad}
-      />
-      <ProgressBtn handleCloseCard={handleCloseCard} count={count} />
+    <Container themeColor={cardText[currentIndex].themeColor}>
+      <CardWrapper className="card" ref={cardRef} isInitialLoad={isInitialLoad}>
+        <CardContent card={cardText[currentIndex]} />
+      </CardWrapper>
+      <ProgressBtn handleNextCard={handleNextCard} count={count} />
     </Container>
   );
 };
@@ -105,32 +92,14 @@ const expand = keyframes`
   }
 `;
 
-const contract = keyframes`
-  0% {
-    transform: translateX(0px);
-  }
-  100% {
-    transform: translateX(1400px);
-  }
-`;
-
 const Container = styled.div`
   position: relative;
   height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
-  color: #fff;
   background-color: ${({ themeColor }) => themeColor || "#151226"};
   animation: ${expand} 0.8s ease forwards;
-  ${({ isClosing }) =>
-    isClosing
-      ? css`
-          animation: ${contract} 0.8s ease forwards;
-        `
-      : css`
-          animation: ${expand} 0.8s ease forwards;
-        `};
   transition: background-color 0.3s ease;
 `;

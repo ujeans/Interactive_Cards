@@ -1,8 +1,8 @@
 import styled from "styled-components";
 // components
-import Logo from "../common/Log";
+import Logo from "./Log";
 
-const Card = ({ card }) => {
+const CardContent = ({ card }) => {
   return (
     <Content>
       <ProjectName themeColor={card.themeColor}>{card.projectName}</ProjectName>
@@ -17,7 +17,7 @@ const Card = ({ card }) => {
   );
 };
 
-export default Card;
+export default CardContent;
 
 const Content = styled.div`
   position: relative;
