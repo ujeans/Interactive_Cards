@@ -18,14 +18,15 @@ const ProjectDetailPage = () => {
   );
   const [count, setCount] = useState(5);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
-  const [isExiting, setIsExiting] = useState(false);
+  // const [isExiting, setIsExiting] = useState(false);
+  const [isClosing, setIsClosing] = useState(false); // 새로운 상태 추가
 
   const cardRef = useRef(null);
   const intervalRef = useRef(null);
 
   useEffect(() => {
     if (count === 0) {
-      // handleNextCard();
+      handleNextCard();
       setCount(5);
     }
   }, [count]);
@@ -71,14 +72,17 @@ const ProjectDetailPage = () => {
   };
 
   const handleCloseCard = () => {
-    setIsExiting(true);
+    setIsClosing(true); // 애니메이션 시작
     setTimeout(() => {
-      navigate("/", { state: { initialPosition } });
-    }, 800);
+      navigate("/");
+    }, 800); // 애니메이션 시간과 동일하게 설정
   };
 
   return (
-    <Container themeColor={cardText[currentIndex].themeColor}>
+    <Container
+      themeColor={cardText[currentIndex].themeColor}
+      isClosing={isClosing}
+    >
       <CardWrapper
         cardText={cardText}
         currentIndex={currentIndex}
@@ -101,6 +105,15 @@ const expand = keyframes`
   }
 `;
 
+const contract = keyframes`
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(1400px);
+  }
+`;
+
 const Container = styled.div`
   position: relative;
   height: 100vh;
@@ -111,5 +124,13 @@ const Container = styled.div`
   color: #fff;
   background-color: ${({ themeColor }) => themeColor || "#151226"};
   animation: ${expand} 0.8s ease forwards;
+  ${({ isClosing }) =>
+    isClosing
+      ? css`
+          animation: ${contract} 0.8s ease forwards;
+        `
+      : css`
+          animation: ${expand} 0.8s ease forwards;
+        `};
   transition: background-color 0.3s ease;
 `;
