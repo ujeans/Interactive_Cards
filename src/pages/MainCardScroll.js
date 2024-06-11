@@ -13,11 +13,27 @@ const DateOnly = ({ date }) => (
 
 const MainCardScroll = ({ cards, cardWrapperRef }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [clickPosition, setClickPosition] = useState({ x: 0, y: 0 });
 
-  const onClickCard = card => {
+  const onClickCard = (card, e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setClickPosition({
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2,
+    });
     setSelectedCard(card);
     setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setIsOpen(false);
+      setIsClosing(false);
+      setSelectedCard(null);
+    }, 1000); // 애니메이션 지속 시간과 일치
   };
 
   return (
@@ -25,7 +41,7 @@ const MainCardScroll = ({ cards, cardWrapperRef }) => {
       <Main>
         <Cards ref={cardWrapperRef}>
           {cards.map((card, index) => (
-            <Stack key={index} href="#" onClick={() => onClickCard(card)}>
+            <Stack key={index} href="#" onClick={e => onClickCard(card, e)}>
               <CardWrapper className="top">
                 <CardContent>{card.projectName}</CardContent>
               </CardWrapper>
@@ -46,10 +62,10 @@ const MainCardScroll = ({ cards, cardWrapperRef }) => {
       {isOpen && selectedCard && (
         <Modal
           open={isOpen}
-          onClose={() => {
-            setIsOpen(false);
-          }}
+          isClosing={isClosing}
           selectedCard={selectedCard}
+          clickPosition={clickPosition}
+          onClose={handleClose}
         />
       )}
     </Container>

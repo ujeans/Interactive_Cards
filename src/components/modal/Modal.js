@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { useEffect } from "react";
 // components
 import ModalContainer from "./ModalContainer";
 
-const Modal = ({ onClose, selectedCard }) => {
+const Modal = ({ onClose, isClosing, selectedCard, clickPosition }) => {
   const handleClose = () => {
     onClose?.();
   };
@@ -19,7 +19,11 @@ const Modal = ({ onClose, selectedCard }) => {
 
   return (
     <ModalContainer>
-      <Overlay themeColor={selectedCard.modalColor}>
+      <Overlay
+        themeColor={selectedCard.modalColor}
+        clickPosition={clickPosition}
+        isClosing={isClosing}
+      >
         <ModalWrap>
           <CloseButton onClick={handleClose}>
             <i className="fa-solid fa-xmark"></i>
@@ -36,6 +40,24 @@ const Modal = ({ onClose, selectedCard }) => {
 
 export default Modal;
 
+const expandCircle = (x, y) => keyframes`
+  0% {
+    clip-path: circle(0% at ${x}px ${y}px);
+  }
+  100% {
+    clip-path: circle(150% at ${x}px ${y}px);
+  }
+`;
+
+const contractCircle = (x, y) => keyframes`
+  0% {
+    clip-path: circle(150% at ${x}px ${y}px);
+  }
+  100% {
+    clip-path: circle(0% at ${x}px ${y}px);
+  }
+`;
+
 const Overlay = styled.div`
   position: fixed;
   width: 100%;
@@ -49,6 +71,12 @@ const Overlay = styled.div`
   align-items: center;
   background: ${({ themeColor }) => themeColor};
   z-index: 9999;
+  ${({ clickPosition, isClosing }) => css`
+    animation: ${isClosing
+        ? contractCircle(clickPosition.x, clickPosition.y)
+        : expandCircle(clickPosition.x, clickPosition.y)}
+      1s ease-in-out forwards;
+  `}
 `;
 
 const ModalWrap = styled.div`
