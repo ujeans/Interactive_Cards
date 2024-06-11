@@ -5,7 +5,6 @@ import styled, { css } from "styled-components";
 import CardWrapper from "../components/common/CardWrapper";
 import CardContent from "../components/common/CardContent";
 import Modal from "../components/modal/Modal";
-import CardBottom from "../components/common/CardBottom";
 
 const MainCardScroll = ({ cards, cardWrapperRef, cardSize }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -85,6 +84,7 @@ const MainCardScroll = ({ cards, cardWrapperRef, cardSize }) => {
           selectedCard={selectedCard}
           clickPosition={clickPosition}
           onClose={handleClose}
+          bac={selectedCard.themeColor}
         />
       )}
     </Container>

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import CardBottom from "./CardBottom";
 
 const CardContent = ({ card }) => {
   return (
@@ -32,8 +31,6 @@ const Introduce = styled.h2`
   font-size: 1.5em;
   font-weight: bold;
 `;
-
-const CircleWrapper = styled.div``;
 
 const ProjectName = styled.h3`
   font-size: 0.8em;

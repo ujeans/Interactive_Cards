@@ -5,7 +5,7 @@ import ModalContainer from "./ModalContainer";
 import CardWrapper from "../common/CardWrapper";
 import CardContent from "../common/CardContent";
 
-const Modal = ({ onClose, isClosing, selectedCard, clickPosition }) => {
+const Modal = ({ onClose, isClosing, selectedCard, clickPosition, bac }) => {
   const handleClose = () => {
     onClose?.();
   };
@@ -32,8 +32,9 @@ const Modal = ({ onClose, isClosing, selectedCard, clickPosition }) => {
         <ModalWrap>
           <CardWrapper
             size={{ width: "500px", height: "300px", aspectRatio: "4 / 2" }}
+            bac={bac}
           >
-            <CardContent card={selectedCard} />
+            {/* <CardContent card={selectedCard} /> */}
           </CardWrapper>
         </ModalWrap>
       </Overlay>
@@ -102,36 +103,5 @@ const CloseButton = styled.div`
   i {
     color: #5d5d5d;
     font-size: 30px;
-  }
-`;
-
-const Contents = styled.div`
-  text-align: center;
-
-  h1 {
-    font-size: 30px;
-    font-weight: 600;
-    margin-bottom: 60px;
-  }
-
-  img {
-    margin-top: 60px;
-    width: 300px;
-  }
-`;
-
-const Button = styled.button`
-  font-size: 14px;
-  padding: 10px 20px;
-  border: none;
-  background-color: #ababab;
-  border-radius: 10px;
-  color: white;
-  font-style: italic;
-  font-weight: 200;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #898989;
   }
 `;
