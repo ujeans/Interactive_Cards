@@ -77,7 +77,6 @@ const ScrollCards = ({ cards, cardWrapperRef }) => {
 };
 
 export default ScrollCards;
-
 const Container = styled.div`
   height: 100vh;
   display: flex;
@@ -150,12 +149,6 @@ const Stack = styled.a`
   transform-style: preserve-3d;
   display: flex;
   flex-direction: column;
-  position: relative;
-  overflow: hidden;
-
-  &.transitioning {
-    z-index: 10;
-  }
 
   &:hover .top,
   &:focus .top {
@@ -191,7 +184,6 @@ const Contents = styled.div`
 const Date = styled.div`
   margin-top: 11.75em;
 `;
-
 const expandCircle = keyframes`
   0% {
     clip-path: circle(0% at var(--x) var(--y));
