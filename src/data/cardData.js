@@ -1,7 +1,7 @@
 export const cardText = [
   {
     id: 1,
-    introduce: "안녕하세요, 유진입니다.",
+    introduce: "你好, 我是尤珍。",
     projectName: "dsds",
     position: "Front-end / Design",
     date: "Jun 2024",
@@ -10,7 +10,7 @@ export const cardText = [
   },
   {
     id: 2,
-    introduce: "Hello, I'm Eugene.",
+    introduce: "Hello, I'm Yujin.",
     projectName: "Card Project",
     position: "Front-end / Design",
     date: "Jun 2024",
@@ -19,7 +19,7 @@ export const cardText = [
   },
   {
     id: 3,
-    introduce: "Bonjour, je suis Eugene.",
+    introduce: "안녕하세요, 유진입니다.",
     projectName: "Naver Webtoon",
     position: "Front-end",
     date: "May 2024",
@@ -28,7 +28,7 @@ export const cardText = [
   },
   {
     id: 4,
-    introduce: "مرحبًا، أنا يوجين.",
+    introduce: "नमस्ते, मैं यूजीन हूँ।.",
     projectName: "Yeoreum",
     position: "Front-end / Design",
     date: "Sep 2022 ~ Feb 2023",
@@ -37,7 +37,7 @@ export const cardText = [
   },
   {
     id: 5,
-    introduce: "Hola, soy Eugene.",
+    introduce: "Hola, soy Yujin.",
     projectName: "StudyMate",
     position: "Front-end / Design",
     date: "Dec 2022",

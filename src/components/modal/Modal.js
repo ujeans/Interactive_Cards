@@ -30,11 +30,8 @@ const Modal = ({ onClose, isClosing, selectedCard, clickPosition, bac }) => {
           <i className="fa-solid fa-xmark">X</i>
         </CloseButton>
         <ModalWrap>
-          <CardWrapper
-            size={{ width: "500px", height: "300px", aspectRatio: "4 / 2" }}
-            bac={bac}
-          >
-            {/* <CardContent card={selectedCard} /> */}
+          <CardWrapper size={{ width: "500px", height: "300px" }} bac={bac}>
+            <CardContent card={selectedCard} expand={true} />
           </CardWrapper>
         </ModalWrap>
       </Overlay>

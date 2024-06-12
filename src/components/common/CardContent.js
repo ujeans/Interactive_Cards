@@ -1,13 +1,42 @@
+import React from "react";
 import styled from "styled-components";
 
-const CardContent = ({ card }) => {
+// SVG 컴포넌트
+const DonutLogo = ({ color, expand }) => (
+  <SvgWrapper
+    expand={expand}
+    viewBox="0 0 132 142"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="65" cy="66" r="50" fill={color} />
+    <path
+      d="M82 50C82 22.3858 104.386 0 132 0V0V100V100C104.386 100 82 77.6142 82 50V50Z"
+      fill={color}
+    />
+    <path
+      d="M50.0001 91.0887C77.6143 91.0397 100.04 113.386 100.089 141V141L0.0888882 141.177V141.177C0.0398822 113.563 22.3859 91.1377 50.0001 91.0887V91.0887Z"
+      fill={color}
+    />
+  </SvgWrapper>
+);
+
+const SvgWrapper = styled.svg`
+  width: ${props => (props.expand ? "167px" : "70px")};
+  position: absolute;
+  bottom: 0;
+  right: 1px;
+`;
+
+const CardContent = ({ card, expand }) => {
   return (
     <Content modalColor={card.modalColor}>
-      <Introduce>{card.introduce}</Introduce>
-      <ProjectName>{card.projectName}</ProjectName>
-      <CircleLog className="one" modalColor={card.modalColor} />
-      <CircleLog className="two" modalColor={card.modalColor} />
-      <CircleLog className="three" modalColor={card.modalColor} />
+      <Introduce expand={expand}>
+        {card.introduce.split(",").map((text, index) => (
+          <div key={index}>{text}</div>
+        ))}
+      </Introduce>
+      <ProjectName expand={expand}>{card.projectName}</ProjectName>
+      <DonutLogo color={card.modalColor} expand={expand} />
     </Content>
   );
 };
@@ -28,39 +57,12 @@ const Content = styled.div`
 `;
 
 const Introduce = styled.h2`
-  font-size: 1.5em;
+  padding: 10px 0 0 10px;
+  font-size: ${props => (props.expand ? "2.5em" : "1.2em")};
   font-weight: bold;
 `;
 
 const ProjectName = styled.h3`
-  font-size: 0.8em;
-`;
-
-const CircleLog = styled.div`
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: ${props => props.modalColor};
-
-  &.one {
-    top: 50%;
-    left: 75%;
-  }
-
-  &.two {
-    width: 50px;
-    height: 25px;
-    top: 84%;
-    left: 70%;
-    border-radius: 25px 25px 0 0;
-  }
-
-  &.three {
-    width: 25px;
-    height: 50px;
-    top: 42%;
-    left: 92%;
-    border-radius: 25px 0 0 25px;
-  }
+  padding: 0 0 5px 10px;
+  font-size: ${props => (props.expand ? "1.4em" : "0.8em")};
 `;
