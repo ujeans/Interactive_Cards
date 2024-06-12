@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import ModalContainer from "./ModalContainer";
 import CardWrapper from "../common/card/CardWrapper";
 import FrontCardContent from "../common/card/FrontCardContent";
+import BackCardContent from "../common/card/BackCardContent";
 
 const Modal = ({ onClose, isClosing, selectedCard, clickPosition, bac }) => {
   const handleClose = () => {
@@ -32,6 +33,7 @@ const Modal = ({ onClose, isClosing, selectedCard, clickPosition, bac }) => {
         <ModalWrap>
           <CardWrapper size={{ width: "500px", height: "300px" }} bac={bac}>
             {/* <FrontCardContent card={selectedCard} expand={true} /> */}
+            <BackCardContent card={selectedCard} />
           </CardWrapper>
         </ModalWrap>
       </Overlay>
@@ -71,6 +73,7 @@ const Overlay = styled.div`
   justify-content: center;
   align-items: center;
   background: ${({ themeColor }) => themeColor};
+  /* background: rgba(0, 0, 0, 0.95); */
   z-index: 9999;
   ${({ clickPosition, isClosing }) => css`
     animation: ${isClosing
