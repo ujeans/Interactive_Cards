@@ -2,8 +2,8 @@ import styled, { css, keyframes } from "styled-components";
 import { useEffect } from "react";
 // components
 import ModalContainer from "./ModalContainer";
-import CardWrapper from "../common/CardWrapper";
-import CardContent from "../common/CardContent";
+import CardWrapper from "../common/card/CardWrapper";
+import FrontCardContent from "../common/card/FrontCardContent";
 
 const Modal = ({ onClose, isClosing, selectedCard, clickPosition, bac }) => {
   const handleClose = () => {
@@ -31,7 +31,7 @@ const Modal = ({ onClose, isClosing, selectedCard, clickPosition, bac }) => {
         </CloseButton>
         <ModalWrap>
           <CardWrapper size={{ width: "500px", height: "300px" }} bac={bac}>
-            <CardContent card={selectedCard} expand={true} />
+            {/* <FrontCardContent card={selectedCard} expand={true} /> */}
           </CardWrapper>
         </ModalWrap>
       </Overlay>

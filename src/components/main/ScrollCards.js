@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 // components
-import CardWrapper from "../common/CardWrapper";
-import CardContent from "../common/CardContent";
+import CardWrapper from "../common/card/CardWrapper";
+import CardContent from "../common/card/FrontCardContent";
 
 const DateOnly = ({ date }) => (
   <Contents>

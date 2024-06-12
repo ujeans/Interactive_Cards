@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 
 // components
-import CardWrapper from "../components/common/CardWrapper";
-import CardContent from "../components/common/CardContent";
+import CardWrapper from "../components/common/card/CardWrapper";
+import FrontCardContent from "../components/common/card/FrontCardContent";
 import Modal from "../components/modal/Modal";
 
 const MainCardScroll = ({ cards, cardWrapperRef, cardSize }) => {
@@ -42,31 +42,28 @@ const MainCardScroll = ({ cards, cardWrapperRef, cardSize }) => {
                 size={cardSize}
                 bac={card.themeColor}
               >
-                <CardContent card={card} />
+                <FrontCardContent card={card} />
               </CardWrapper>
               <CardWrapper
                 className="mid-top"
                 size={cardSize}
                 bac={card.themeColor}
               >
-                <CardContent card={card} />
-                {/* <DateOnly date={card.projectName} /> */}
+                <FrontCardContent card={card} />
               </CardWrapper>
               <CardWrapper
                 className="mid-bottom"
                 size={cardSize}
                 bac={card.themeColor}
               >
-                <CardContent card={card} />
-                {/* <DateOnly date={card.projectName} /> */}
+                <FrontCardContent card={card} />
               </CardWrapper>
               <CardWrapper
                 className="bottom"
                 size={cardSize}
                 bac={card.themeColor}
               >
-                <CardContent card={card} />
-                {/* <DateOnly date={card.projectName} /> */}
+                <FrontCardContent card={card} />
               </CardWrapper>
               <CardWrapper
                 className="shadow"

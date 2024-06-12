@@ -4,8 +4,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 // data
 import { cardText } from "../data/cardData";
 // components
-import CardWrapper from "../components/common/CardWrapper";
-import CardContent from "../components/common/CardContent";
+import CardWrapper from "../components/common/card/CardWrapper";
+import CardContent from "../components/common/card/FrontCardContent";
 import ProgressBtn from "../components/projectDetail/ProgressBtn";
 
 const ProjectDetailPage = () => {
