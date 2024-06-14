@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 // components
 import ModalContainer from "./ModalContainer";
 import CardWrapper from "../common/card/CardWrapper";
@@ -7,6 +7,8 @@ import FrontCardContent from "../common/card/FrontCardContent";
 import BackCardContent from "../common/card/BackCardContent";
 
 const Modal = ({ onClose, isClosing, selectedCard, clickPosition, bac }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
   const handleClose = () => {
     onClose?.();
   };
@@ -31,10 +33,19 @@ const Modal = ({ onClose, isClosing, selectedCard, clickPosition, bac }) => {
           <i className="fa-solid fa-xmark">X</i>
         </CloseButton>
         <ModalWrap>
-          <CardWrapper size={{ width: "500px", height: "300px" }} bac={bac}>
-            {/* <FrontCardContent card={selectedCard} expand={true} /> */}
-            <BackCardContent card={selectedCard} />
-          </CardWrapper>
+          <FlippableCard
+            onMouseEnter={() => setIsFlipped(true)}
+            onMouseLeave={() => setIsFlipped(false)}
+          >
+            <FlippableCardInner isFlipped={isFlipped}>
+              <CardWrapperBack bac={bac}>
+                <FrontCardContent card={selectedCard} expand={true} />
+              </CardWrapperBack>
+              <CardWrapperFront bac={bac}>
+                <BackCardContent card={selectedCard} />
+              </CardWrapperFront>
+            </FlippableCardInner>
+          </FlippableCard>
         </ModalWrap>
       </Overlay>
     </ModalContainer>
@@ -73,7 +84,6 @@ const Overlay = styled.div`
   justify-content: center;
   align-items: center;
   background: ${({ themeColor }) => themeColor};
-  /* background: rgba(0, 0, 0, 0.95); */
   z-index: 9999;
   ${({ clickPosition, isClosing }) => css`
     animation: ${isClosing
@@ -84,9 +94,7 @@ const Overlay = styled.div`
 `;
 
 const ModalWrap = styled.div`
-  /* width: 100vw;
-  height: 100vh; */
-  background-color: #fff;
+  /* background-color: #fff; */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -104,4 +112,37 @@ const CloseButton = styled.div`
     color: #5d5d5d;
     font-size: 30px;
   }
+`;
+
+const FlippableCard = styled.div`
+  position: relative;
+  width: 500px;
+  height: 300px;
+  perspective: 1000px;
+`;
+
+const FlippableCardInner = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  transform: ${props =>
+    props.isFlipped ? "rotateY(180deg)" : "rotateY(0deg)"};
+`;
+
+const CardWrapperFront = styled(CardWrapper)`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform: rotateY(0deg);
+`;
+
+const CardWrapperBack = styled(CardWrapper)`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
 `;
