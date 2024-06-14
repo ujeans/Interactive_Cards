@@ -14,10 +14,22 @@ import gmail from "../../assets/gmail.svg";
 import linkedin from "../../assets/linkedin.svg";
 import XIcon from "../../assets/x_svg";
 
-const Modal = ({ onClose, isClosing, selectedCard, clickPosition, bac }) => {
+const Modal = ({
+  onClose,
+  isClosing,
+  selectedCard,
+  clickPosition,
+  bac,
+  setSelectedCard,
+}) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [hover, setHover] = useState(false);
+  const [count, setCount] = useState(5);
   const [showProgressCircle, setShowProgressCircle] = useState(false);
+
+  const [currentIndex, setCurrentIndex] = useState(
+    cardText.findIndex(c => c.projectName === selectedCard.projectName)
+  );
 
   const handleClose = () => {
     onClose?.();
@@ -40,6 +52,15 @@ const Modal = ({ onClose, isClosing, selectedCard, clickPosition, bac }) => {
       window.location.hash = "";
     };
   }, [selectedCard]);
+
+  useEffect(() => {
+    setSelectedCard(cardText[currentIndex]);
+  }, [currentIndex]);
+
+  const handleNextCard = () => {
+    const nextIndex = (currentIndex + 1) % cardText.length;
+    setCurrentIndex(nextIndex);
+  };
 
   return (
     <ModalContainer>
@@ -72,9 +93,11 @@ const Modal = ({ onClose, isClosing, selectedCard, clickPosition, bac }) => {
         <ProgressContainer>
           {showProgressCircle && (
             <ProgressCircleComponent
-              duration={3}
+              duration={count}
+              setCount={setCount}
               themeColor={selectedCard.themeColor}
               show={showProgressCircle}
+              handleNextCard={handleNextCard}
             />
           )}
 

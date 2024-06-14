@@ -1,16 +1,30 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const ProgressCircleComponent = ({ duration, themeColor, show }) => {
+const ProgressCircleComponent = ({
+  duration,
+  themeColor,
+  show,
+  handleNextCard,
+  setCount,
+}) => {
   const [percentage, setPercentage] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setPercentage(prev => (prev < 100 ? prev + 1 : 100));
-    }, duration * 10);
+      setPercentage(prev => {
+        if (prev < 100) {
+          return prev + 1;
+        } else {
+          handleNextCard();
+          setCount(5);
+          return 0;
+        }
+      });
+    }, 50);
 
     return () => clearInterval(interval);
-  }, [duration]);
+  }, [duration, handleNextCard, setCount]);
 
   const radius = 25;
   const circumference = 2 * Math.PI * radius;
@@ -56,6 +70,6 @@ const ProgressCircle = styled.circle`
   stroke: ${({ themeColor }) => themeColor};
   stroke-width: 5;
   stroke-linecap: round;
-  transition: stroke-dashoffset 0.35s;
+  transition: stroke-dashoffset 0.05s linear;
   transform-origin: center;
 `;

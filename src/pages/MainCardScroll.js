@@ -81,6 +81,7 @@ const MainCardScroll = ({ cards, cardWrapperRef, cardSize }) => {
           selectedCard={selectedCard}
           clickPosition={clickPosition}
           onClose={handleClose}
+          setSelectedCard={setSelectedCard}
           bac={selectedCard.themeColor}
         />
       )}
