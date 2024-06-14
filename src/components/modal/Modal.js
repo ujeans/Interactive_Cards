@@ -5,9 +5,15 @@ import ModalContainer from "./ModalContainer";
 import CardWrapper from "../common/card/CardWrapper";
 import FrontCardContent from "../common/card/FrontCardContent";
 import BackCardContent from "../common/card/BackCardContent";
+// assets
+import github from "../../assets/github.svg";
+import gmail from "../../assets/gmail.svg";
+import linkedin from "../../assets/linkedin.svg";
+import XIcon from "../../assets/x_svg";
 
 const Modal = ({ onClose, isClosing, selectedCard, clickPosition, bac }) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [hover, setHover] = useState(false);
 
   const handleClose = () => {
     onClose?.();
@@ -29,9 +35,11 @@ const Modal = ({ onClose, isClosing, selectedCard, clickPosition, bac }) => {
         clickPosition={clickPosition}
         isClosing={isClosing}
       >
-        <CloseButton onClick={handleClose}>
-          <i className="fa-solid fa-xmark">X</i>
-        </CloseButton>
+        <LinkWrapper>
+          <Icon src={github} alt="github" />
+          <Icon src={gmail} alt="gmail" />
+          <Icon src={linkedin} alt="linked-in" />
+        </LinkWrapper>
         <ModalWrap>
           <FlippableCard
             onMouseEnter={() => setIsFlipped(true)}
@@ -47,6 +55,16 @@ const Modal = ({ onClose, isClosing, selectedCard, clickPosition, bac }) => {
             </FlippableCardInner>
           </FlippableCard>
         </ModalWrap>
+        <CloseButton
+          onClick={handleClose}
+          themeColor={selectedCard.themeColor}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        >
+          <XIcon
+            color={hover ? selectedCard.modalColor : selectedCard.themeColor}
+          />
+        </CloseButton>
       </Overlay>
     </ModalContainer>
   );
@@ -80,8 +98,9 @@ const Overlay = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
+  padding: 40px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background: ${({ themeColor }) => themeColor};
   z-index: 9999;
@@ -93,25 +112,24 @@ const Overlay = styled.div`
   `}
 `;
 
+const LinkWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Icon = styled.img`
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+  cursor: pointer;
+`;
+
 const ModalWrap = styled.div`
-  /* background-color: #fff; */
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
-
-const CloseButton = styled.div`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-
-  i {
-    color: #5d5d5d;
-    font-size: 30px;
-  }
 `;
 
 const FlippableCard = styled.div`
@@ -145,4 +163,19 @@ const CardWrapperBack = styled(CardWrapper)`
   height: 100%;
   backface-visibility: hidden;
   transform: rotateY(180deg);
+`;
+
+const CloseButton = styled.div`
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 2px solid ${({ themeColor }) => themeColor};
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ themeColor }) => themeColor};
+  }
 `;
