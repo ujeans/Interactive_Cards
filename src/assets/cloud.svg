@@ -1,4 +1,0 @@
-<!-- src/assets/cloud.svg -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <path d="M48 40H16c-4.42 0-8-3.58-8-8 0-4.13 3.13-7.47 7.18-7.96A11.992 11.992 0 0 1 24 16c5.23 0 9.68 3.34 11.18 8.04A8.002 8.002 0 0 1 48 40z" fill="#5c7cd4"/>
-</svg>
