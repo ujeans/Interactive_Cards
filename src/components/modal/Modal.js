@@ -36,9 +36,9 @@ const Modal = ({ onClose, isClosing, selectedCard, clickPosition, bac }) => {
         isClosing={isClosing}
       >
         <LinkWrapper>
-          <Icon src={github} alt="github" />
-          <Icon src={gmail} alt="gmail" />
-          <Icon src={linkedin} alt="linked-in" />
+          <Icon src={github} alt="github" delay="0.5s" />
+          <Icon src={gmail} alt="gmail" delay="0.7s" />
+          <Icon src={linkedin} alt="linked-in" delay="0.9s" />
         </LinkWrapper>
         <ModalWrap>
           <FlippableCard
@@ -90,6 +90,39 @@ const contractCircle = (x, y) => keyframes`
   }
 `;
 
+const slideInFromDown = keyframes`
+   0% {
+            opacity: 0;
+            transform: translate3d(0, -100%, 0);
+        }
+        to {
+            opacity: 1;
+            transform: translateZ(0);
+        }
+`;
+
+const slideInFromLeft = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const slideInFromRight = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
 const Overlay = styled.div`
   position: fixed;
   width: 100%;
@@ -121,6 +154,9 @@ const Icon = styled.img`
   width: 40px;
   height: 40px;
   margin-bottom: 10px;
+  opacity: 0;
+  animation: ${slideInFromLeft} 0.5s ease-in-out forwards;
+  animation-delay: ${({ delay }) => delay};
   cursor: pointer;
 `;
 
@@ -130,6 +166,7 @@ const ModalWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  animation: ${slideInFromDown} 1s;
 `;
 
 const FlippableCard = styled.div`
@@ -174,6 +211,8 @@ const CloseButton = styled.div`
   border-radius: 50%;
   border: 2px solid ${({ themeColor }) => themeColor};
   cursor: pointer;
+  animation: ${slideInFromRight} 1s ease-in-out forwards;
+  opacity: 0;
 
   &:hover {
     background-color: ${({ themeColor }) => themeColor};
