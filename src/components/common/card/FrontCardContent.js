@@ -1,68 +1,46 @@
 import React from "react";
 import styled from "styled-components";
 
-// SVG 컴포넌트
-const DonutLogo = ({ color, expand }) => (
-  <SvgWrapper
-    expand={expand}
-    viewBox="0 0 132 142"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle cx="65" cy="66" r="50" fill={color} />
-    <path
-      d="M82 50C82 22.3858 104.386 0 132 0V0V100V100C104.386 100 82 77.6142 82 50V50Z"
-      fill={color}
-    />
-    <path
-      d="M50.0001 91.0887C77.6143 91.0397 100.04 113.386 100.089 141V141L0.0888882 141.177V141.177C0.0398822 113.563 22.3859 91.1377 50.0001 91.0887V91.0887Z"
-      fill={color}
-    />
-  </SvgWrapper>
-);
-
-const SvgWrapper = styled.svg`
-  width: ${props => (props.expand ? "167px" : "70px")};
-  position: absolute;
-  bottom: 0;
-  right: 1px;
-`;
-
-const CardContent = ({ card, expand }) => {
+const FrontCardContent = ({ card }) => {
   return (
-    <Content modalColor={card.modalColor}>
-      <Introduce expand={expand}>
-        {card.introduce.split(",").map((text, index) => (
-          <div key={index}>{text}</div>
-        ))}
-      </Introduce>
-      <ProjectName expand={expand}>{card.projectName}</ProjectName>
-      <DonutLogo color={card.modalColor} expand={expand} />
-    </Content>
+    <Container modalColor={card.modalColor}>
+      <Top>{card.introduce}</Top>
+      <Middle>
+        <div>
+          함께 소통하며 즐거움을 느끼는 개발자 홍유진입니다. 사용자의 가치를
+          생각하며 개발하려고 노력합니다. 인터렉티브한 개발에 관심이 많으며
+          사용자를 위한 서비스를 개발하고 싶습니다. 블로그와 개인 노션에 공부한
+          내용을 정리하며 학습합니다. 기술뿐 아니라 협업에 있어서도 함께하고
+          싶은 사람이 되기 위해 소통을 중요시 합니다. 교내 & 교외 개발 동아리
+          참여 및 부회장 및 프런트엔드 팀장으로서 팀원을 이끌면서 협업 능력 및
+          소통 능력을 키웠습니다.
+        </div>
+      </Middle>
+      <Bottom modalColor={card.modalColor}>
+        <div>email:fsdfsdf</div>
+      </Bottom>
+    </Container>
   );
 };
 
-export default CardContent;
+export default FrontCardContent;
 
-const Content = styled.div`
+const Container = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
   color: ${props => props.modalColor};
-  line-height: 1.25;
-  -webkit-font-smoothing: antialiased;
 `;
 
-const Introduce = styled.h2`
-  padding: 10px 0 0 10px;
-  font-size: ${props => (props.expand ? "2.5em" : "1.2em")};
-  font-weight: bold;
-`;
+const Top = styled.div``;
 
-const ProjectName = styled.h3`
-  padding: 0 0 5px 10px;
-  font-size: ${props => (props.expand ? "1.4em" : "0.8em")};
+const Middle = styled.div``;
+
+const Bottom = styled.div`
+  position: absolute;
+  bottom: 1px;
+  width: calc(100% - 1px);
+  height: 30px;
+  border-top: 1px solid ${props => props.modalColor};
+  /* background-color: ${props => props.modalColor}; */
 `;

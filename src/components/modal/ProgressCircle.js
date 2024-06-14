@@ -16,7 +16,7 @@ const ProgressCircleComponent = ({
         if (prev < 100) {
           return prev + 1;
         } else {
-          handleNextCard();
+          // handleNextCard();
           setCount(5);
           return 0;
         }

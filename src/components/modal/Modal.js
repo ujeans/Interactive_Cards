@@ -81,10 +81,10 @@ const Modal = ({
           >
             <FlippableCardInner isFlipped={isFlipped}>
               <CardWrapperBack bac={bac}>
-                <FrontCardContent card={selectedCard} expand={true} />
+                <BackCardContent card={selectedCard} />
               </CardWrapperBack>
               <CardWrapperFront bac={bac}>
-                <BackCardContent card={selectedCard} />
+                <FrontCardContent card={selectedCard} expand={true} />
               </CardWrapperFront>
             </FlippableCardInner>
           </FlippableCard>
