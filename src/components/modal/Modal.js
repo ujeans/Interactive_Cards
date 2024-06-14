@@ -6,6 +6,8 @@ import CardWrapper from "../common/card/CardWrapper";
 import FrontCardContent from "../common/card/FrontCardContent";
 import BackCardContent from "../common/card/BackCardContent";
 import ProgressCircleComponent from "./ProgressCircle";
+// data
+import { cardText } from "../../data/cardData";
 // assets
 import github from "../../assets/github.svg";
 import gmail from "../../assets/gmail.svg";
@@ -28,6 +30,16 @@ const Modal = ({ onClose, isClosing, selectedCard, clickPosition, bac }) => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    window.location.hash = selectedCard.projectName
+      .replace(/\s+/g, "-")
+      .toLowerCase();
+
+    return () => {
+      window.location.hash = "";
+    };
+  }, [selectedCard]);
 
   return (
     <ModalContainer>
