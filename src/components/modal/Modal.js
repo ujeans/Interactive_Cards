@@ -5,6 +5,7 @@ import ModalContainer from "./ModalContainer";
 import CardWrapper from "../common/card/CardWrapper";
 import FrontCardContent from "../common/card/FrontCardContent";
 import BackCardContent from "../common/card/BackCardContent";
+import ProgressCircleComponent from "./ProgressCircle";
 // assets
 import github from "../../assets/github.svg";
 import gmail from "../../assets/gmail.svg";
@@ -14,18 +15,18 @@ import XIcon from "../../assets/x_svg";
 const Modal = ({ onClose, isClosing, selectedCard, clickPosition, bac }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [hover, setHover] = useState(false);
+  const [showProgressCircle, setShowProgressCircle] = useState(false);
 
   const handleClose = () => {
     onClose?.();
   };
 
   useEffect(() => {
-    const $body = document.querySelector("body");
-    const overflow = $body.style.overflow;
-    $body.style.overflow = "hidden";
-    return () => {
-      $body.style.overflow = overflow;
-    };
+    const timer = setTimeout(() => {
+      setShowProgressCircle(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -55,16 +56,27 @@ const Modal = ({ onClose, isClosing, selectedCard, clickPosition, bac }) => {
             </FlippableCardInner>
           </FlippableCard>
         </ModalWrap>
-        <CloseButton
-          onClick={handleClose}
-          themeColor={selectedCard.themeColor}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-        >
-          <XIcon
-            color={hover ? selectedCard.modalColor : selectedCard.themeColor}
-          />
-        </CloseButton>
+
+        <ProgressContainer>
+          {showProgressCircle && (
+            <ProgressCircleComponent
+              duration={3}
+              themeColor={selectedCard.themeColor}
+              show={showProgressCircle}
+            />
+          )}
+
+          <CloseButton
+            onClick={handleClose}
+            themeColor={selectedCard.themeColor}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+          >
+            <XIcon
+              color={hover ? selectedCard.modalColor : selectedCard.themeColor}
+            />
+          </CloseButton>
+        </ProgressContainer>
       </Overlay>
     </ModalContainer>
   );
@@ -202,7 +214,17 @@ const CardWrapperBack = styled(CardWrapper)`
   transform: rotateY(180deg);
 `;
 
+const ProgressContainer = styled.div`
+  width: 60px;
+  height: 60px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const CloseButton = styled.div`
+  position: absolute;
   width: 40px;
   height: 40px;
   display: flex;
