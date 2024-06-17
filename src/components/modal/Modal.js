@@ -80,12 +80,12 @@ const Modal = ({
             onMouseLeave={() => setIsFlipped(false)}
           >
             <FlippableCardInner isFlipped={isFlipped}>
-              <CardWrapperBack bac={bac}>
-                <BackCardContent card={selectedCard} />
-              </CardWrapperBack>
               <CardWrapperFront bac={bac}>
-                <FrontCardContent card={selectedCard} expand={true} />
+                <BackCardContent card={selectedCard} />
               </CardWrapperFront>
+              <CardWrapperBack bac={bac}>
+                <FrontCardContent card={selectedCard} expand={true} />
+              </CardWrapperBack>
             </FlippableCardInner>
           </FlippableCard>
         </ModalWrap>

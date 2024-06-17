@@ -59,7 +59,7 @@ const Bottom = styled.div`
 `;
 
 const InfoWrapper = styled.div`
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 `;
 
 const Info = styled.div`
