@@ -1,5 +1,6 @@
-import React from "react";
 import styled from "styled-components";
+// assets
+import qrcode from "../../../assets/qrcode.svg";
 
 const FrontCardContent = ({ card }) => {
   return (
@@ -20,7 +21,7 @@ const FrontCardContent = ({ card }) => {
           <Info>mail.dbwlsxkal95@gmail.com</Info>
           <Info>github.https://github.com/ujeans</Info>
         </InfoWrapper>
-        <QR></QR>
+        <QR src={qrcode} />
       </Bottom>
     </Container>
   );
@@ -66,8 +67,7 @@ const Info = styled.div`
   margin-bottom: 3px;
 `;
 
-const QR = styled.div`
+const QR = styled.img`
   width: 60px;
   height: 60px;
-  background-color: aliceblue;
 `;
