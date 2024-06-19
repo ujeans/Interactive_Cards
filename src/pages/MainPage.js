@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 // data
 import { cardText } from "../data/cardData";
 // components
-import Header from "../components/common/Header";
+import Header from "../components/main/Header";
 // pages
 import MainCardScroll from "./MainCardScroll";
 

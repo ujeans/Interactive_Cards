@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 
 // components
 import CardWrapper from "../components/common/card/CardWrapper";
-import FrontCardContent from "../components/common/card/FrontCardContent";
 import Modal from "../components/modal/Modal";
 import BackCardContent from "../components/common/card/BackCardContent";
 
