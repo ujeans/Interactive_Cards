@@ -2,60 +2,31 @@ import styled from "styled-components";
 
 const Header = () => {
   return (
-    <>
-      <Container>
-        <HomeBtn>ujeans</HomeBtn>
-        <Wrapper>
-          <TextBtn>INFO</TextBtn>
-          <TextBtn>PROJECTS</TextBtn>
-          <TextBtn>BLOG</TextBtn>
-        </Wrapper>
-        <Mobile></Mobile>
-      </Container>
-    </>
+    <LogoContainer>
+      <Title>GET LEADY TO</Title>
+      <Sub>scroll down!</Sub>
+    </LogoContainer>
   );
 };
 
 export default Header;
 
-const Container = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  left: 0;
-  height: 60px;
+const LogoContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  backdrop-filter: blur(12px);
-`;
-
-const HomeBtn = styled.button`
-  margin-left: 40px;
-  /* padding: 0; */
-  border: none;
-  background: none;
+  text-align: center;
+  margin-top: 20px;
   cursor: pointer;
 `;
 
-const Wrapper = styled.div`
-  display: flex;
+const Title = styled.h5`
+  margin-bottom: 10px;
 `;
 
-const TextBtn = styled.button`
-  padding: 10px;
-  border: none;
-  background: none;
-  cursor: pointer;
-  &:hover {
-    color: #ff7f50;
-  }
-`;
-
-const Mobile = styled.div`
-  width: 24px;
-  height: 24px;
-  margin-right: 40px;
-  background-color: red;
+const Sub = styled.h1`
+  font-family: "Nanum Myeongjo", serif;
+  font-weight: 700;
+  font-style: italic;
 `;

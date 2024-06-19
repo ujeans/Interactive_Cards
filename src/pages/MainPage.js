@@ -3,8 +3,7 @@ import { Helmet } from "react-helmet-async";
 // data
 import { cardText } from "../data/cardData";
 // components
-import ScrollCards from "../components/main/ScrollCards";
-import Logo from "../components/common/Log";
+import Header from "../components/common/Header";
 // pages
 import MainCardScroll from "./MainCardScroll";
 
@@ -45,9 +44,8 @@ const MainPage = () => {
         <title>ULog - Main</title>
       </Helmet>
 
-      <Logo />
+      <Header />
       <MainCardScroll cards={cards} cardWrapperRef={cardWrapperRef} />
-      {/* <ScrollCards cards={cards} cardWrapperRef={cardWrapperRef} /> */}
     </>
   );
 };
