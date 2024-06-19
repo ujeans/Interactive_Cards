@@ -22,6 +22,7 @@ export const cardText = [
     date: "Jun 2024",
     themeColor: "#F46F44",
     modalColor: "#F9B0D8",
+    githubLink: "https://github.com/ujeans/ujinLog",
   },
   {
     id: 3,
@@ -34,6 +35,7 @@ export const cardText = [
     project: "Personal",
     themeColor: "#781817",
     modalColor: "#95D6F2",
+    githubLink: "https://github.com/ujeans/fe01_naverwebtoon",
   },
   {
     id: 4,
@@ -46,6 +48,7 @@ export const cardText = [
     project: "Personal",
     themeColor: "#F6C25B",
     modalColor: "#F8633E",
+    githubLink: "https://github.com/modern-agile-team/yeoreum-front-client",
   },
   {
     id: 5,
@@ -56,5 +59,6 @@ export const cardText = [
     project: "Personal",
     themeColor: "#8ACFF0",
     modalColor: "#1E82C1",
+    githubLink: "https://github.com/ujeans/StudyMate-Front-Client",
   },
 ];
