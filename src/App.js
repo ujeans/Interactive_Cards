@@ -1,22 +1,15 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-// pages
-import MainPage from "./pages/MainPage";
-
-// styles
 import theme from "./styles/theme";
 import GlobalStyle from "./styles/GlobalStyle";
+import MainPage from "./test/MainPage2";
 
-function App() {
+const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-      </Routes>
+      <MainPage />
     </ThemeProvider>
   );
-}
+};
 
 export default App;
