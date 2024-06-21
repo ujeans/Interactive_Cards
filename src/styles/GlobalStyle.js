@@ -1,8 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
 
   :root {
     --cardW: ${props => props.theme.cardW};
@@ -13,12 +13,12 @@ const GlobalStyle = createGlobalStyle`
   body {
     height: 100vh;
     overflow-x: hidden;
-  font-family: "Ubuntu Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
+    font-family: "Ubuntu Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
   }
 
   *,

@@ -44,7 +44,7 @@ const MainPage = () => {
         <title>ULog - Main</title>
       </Helmet>
 
-      {/* <Header /> */}
+      <Header />
       <MainCardScroll cards={cards} cardWrapperRef={cardWrapperRef} />
     </>
   );
