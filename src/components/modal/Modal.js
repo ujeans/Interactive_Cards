@@ -196,11 +196,20 @@ const Overlay = styled.div`
         : expandCircle(clickPosition.x, clickPosition.y)}
       1s ease-in-out forwards;
   `}
+
+  @media (max-width: 400px) {
+    flex-direction: column;
+    align-content: space-between;
+  }
 `;
 
 const LinkWrapper = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 400px) {
+    flex-direction: row;
+  }
 `;
 
 const Icon = styled.img`
@@ -211,6 +220,11 @@ const Icon = styled.img`
   animation: ${slideInFromLeft} 0.5s ease-in-out forwards;
   animation-delay: ${({ delay }) => delay};
   cursor: pointer;
+
+  @media (max-width: 400px) {
+    width: 30px;
+    margin-right: 10px;
+  }
 `;
 
 const ModalWrap = styled.div`
@@ -220,6 +234,10 @@ const ModalWrap = styled.div`
   align-items: center;
   justify-content: center;
   animation: ${slideInFromDown} 1s;
+
+  @media (max-width: 400px) {
+    width: 100%;
+  }
 `;
 
 const FlippableCard = styled.div`
@@ -227,6 +245,11 @@ const FlippableCard = styled.div`
   width: 500px;
   height: 300px;
   perspective: 1000px;
+
+  @media (max-width: 400px) {
+    width: 100%;
+    /* height: auto; */
+  }
 `;
 
 const FlippableCardInner = styled.div`
@@ -245,6 +268,9 @@ const CardWrapperFront = styled(CardWrapper)`
   height: 100%;
   backface-visibility: hidden;
   transform: rotateY(0deg);
+
+  @media (max-width: 400px) {
+  }
 `;
 
 const CardWrapperBack = styled(CardWrapper)`
@@ -253,11 +279,12 @@ const CardWrapperBack = styled(CardWrapper)`
   height: 100%;
   backface-visibility: hidden;
   transform: rotateY(180deg);
+
+  @media (max-width: 400px) {
+  }
 `;
 
 const ProgressContainer = styled.div`
-  width: 60px;
-  height: 60px;
   position: relative;
   display: flex;
   align-items: center;
@@ -279,5 +306,10 @@ const CloseButton = styled.div`
 
   &:hover {
     background-color: ${({ themeColor }) => themeColor};
+  }
+
+  @media (max-width: 400px) {
+    width: 28px;
+    height: 28px;
   }
 `;

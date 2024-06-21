@@ -16,12 +16,12 @@ const ProgressCircleComponent = ({
         if (prev < 100) {
           return prev + 1;
         } else {
-          handleNextCard();
+          // handleNextCard();
           setCount(5);
           return 0;
         }
       });
-    }, 50);
+    }, (duration * 1000) / 100); // Adjusted interval to match the duration prop
 
     return () => clearInterval(interval);
   }, [duration, handleNextCard, setCount]);
@@ -32,7 +32,7 @@ const ProgressCircleComponent = ({
 
   return (
     <CircleContainer show={show}>
-      <StyledSvg width="60" height="60">
+      <StyledSvg viewBox="0 0 60 60">
         <BackgroundCircle cx="30" cy="30" r={radius} />
         <ProgressCircle
           cx="30"
@@ -55,14 +55,31 @@ const CircleContainer = styled.div`
   width: 60px;
   height: 60px;
   left: 0;
+
+  @media (max-width: 400px) {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
-const StyledSvg = styled.svg``;
+const StyledSvg = styled.svg`
+  width: 100%;
+  height: 100%;
+
+  @media (max-width: 400px) {
+    width: 40px;
+    height: 40px;
+  }
+`;
 
 const BackgroundCircle = styled.circle`
   fill: none;
   stroke: #e6e6e6;
   stroke-width: 5;
+
+  @media (max-width: 400px) {
+    stroke-width: 3;
+  }
 `;
 
 const ProgressCircle = styled.circle`
@@ -72,4 +89,8 @@ const ProgressCircle = styled.circle`
   stroke-linecap: round;
   transition: stroke-dashoffset 0.05s linear;
   transform-origin: center;
+
+  @media (max-width: 400px) {
+    stroke-width: 3;
+  }
 `;

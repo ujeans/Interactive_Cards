@@ -34,7 +34,14 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   color: ${props => props.modalColor};
+
+  @media (max-width: 400px) {
+    padding: 20px;
+  }
 `;
 
 const Top = styled.div`
@@ -50,7 +57,6 @@ const Logo = styled.div`
 `;
 
 const Introduce = styled.div`
-  margin-bottom: 50px;
   font-size: 1.3rem;
 `;
 
