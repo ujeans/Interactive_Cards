@@ -114,7 +114,7 @@ const Main = styled.main`
     @media screen and (min-width: 961px) {
       height: calc(var(--cardH, 8em) * 9 - 1.5em);
     }
-    @media screen and (min-width: 1281px) {
+    @media screen and (min-width: 1400px) {
       height: calc(var(--cardH, 8em) * 8 - 1.5em);
     }
   `}
@@ -152,7 +152,7 @@ const Cards = styled.div`
           var(--cardW, 14em)
         );
     }
-    @media screen and (min-width: 1281px) {
+    @media screen and (min-width: 1400px) {
       grid-template: repeat(8, var(--cardH, 8em)) / repeat(
           5,
           var(--cardW, 14em)
