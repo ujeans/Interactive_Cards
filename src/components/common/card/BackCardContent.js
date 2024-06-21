@@ -1,13 +1,14 @@
 import styled from "styled-components";
 // assets
 import qrcode from "../../../assets/qrcode.svg";
+import profile from "../../../assets/profile.png";
 
 const BackCardContent = ({ card }) => {
   return (
     <Container modalColor={card.modalColor}>
       <Top>
         <div>
-          <Logo></Logo>
+          <Logo src={profile}></Logo>
           <Introduce>{card.introduce}</Introduce>
         </div>
         <div>
@@ -33,15 +34,11 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 30px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   color: ${props => props.modalColor};
-
-  @media (min-width: 361px) {
-    padding: 20px;
-  }
 `;
 
 const Top = styled.div`
@@ -49,11 +46,12 @@ const Top = styled.div`
   justify-content: space-between;
 `;
 
-const Logo = styled.div`
-  width: 70px;
-  height: 70px;
-  margin-bottom: 10px;
-  background-color: aliceblue;
+const Logo = styled.img`
+  width: 130px;
+
+  @media screen and (min-width: 361px) and (max-width: 410px) {
+    width: 90px;
+  }
 `;
 
 const Introduce = styled.div`
@@ -63,6 +61,7 @@ const Introduce = styled.div`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 `;
 
 const InfoWrapper = styled.div`
@@ -71,9 +70,15 @@ const InfoWrapper = styled.div`
 
 const Info = styled.div`
   margin-bottom: 3px;
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 const QR = styled.img`
   width: 60px;
-  height: 60px;
+
+  @media screen and (min-width: 361px) and (max-width: 410px) {
+    width: 50px;
+  }
 `;
