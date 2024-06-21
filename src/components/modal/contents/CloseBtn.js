@@ -54,7 +54,7 @@ const Wrapper = styled.div`
     background-color: ${({ themeColor }) => themeColor};
   }
 
-  @media (max-width: 400px) {
+  @media (min-width: 361px) {
     width: 28px;
     height: 28px;
   }

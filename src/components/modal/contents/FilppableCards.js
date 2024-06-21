@@ -48,7 +48,7 @@ const ModalWrap = styled.div`
   justify-content: center;
   animation: ${slideInFromDown} 1s;
 
-  @media (max-width: 400px) {
+  @media (min-width: 361px) {
     width: 100%;
   }
 `;
@@ -59,9 +59,8 @@ const FlippableCard = styled.div`
   height: 300px;
   perspective: 1000px;
 
-  @media (max-width: 400px) {
+  @media (min-width: 361px) {
     width: 100%;
-    /* height: auto; */
   }
 `;
 
@@ -81,9 +80,6 @@ const CardWrapperFront = styled(CardWrapper)`
   height: 100%;
   backface-visibility: hidden;
   transform: rotateY(0deg);
-
-  @media (max-width: 400px) {
-  }
 `;
 
 const CardWrapperBack = styled(CardWrapper)`
@@ -92,7 +88,4 @@ const CardWrapperBack = styled(CardWrapper)`
   height: 100%;
   backface-visibility: hidden;
   transform: rotateY(180deg);
-
-  @media (max-width: 400px) {
-  }
 `;

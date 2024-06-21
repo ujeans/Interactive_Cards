@@ -56,7 +56,7 @@ const CircleContainer = styled.div`
   height: 60px;
   left: 0;
 
-  @media (max-width: 400px) {
+  @media (min-width: 361px) {
     width: 40px;
     height: 40px;
   }
@@ -66,7 +66,7 @@ const StyledSvg = styled.svg`
   width: 100%;
   height: 100%;
 
-  @media (max-width: 400px) {
+  @media (min-width: 361px) {
     width: 40px;
     height: 40px;
   }
@@ -77,7 +77,7 @@ const BackgroundCircle = styled.circle`
   stroke: #e6e6e6;
   stroke-width: 5;
 
-  @media (max-width: 400px) {
+  @media (min-width: 361px) {
     stroke-width: 3;
   }
 `;
@@ -90,7 +90,7 @@ const ProgressCircle = styled.circle`
   transition: stroke-dashoffset 0.05s linear;
   transform-origin: center;
 
-  @media (max-width: 400px) {
+  @media (min-width: 361px) {
     stroke-width: 3;
   }
 `;

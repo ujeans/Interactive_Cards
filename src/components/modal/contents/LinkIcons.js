@@ -37,7 +37,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (max-width: 400px) {
+  @media (min-width: 361px) {
     flex-direction: row;
   }
 `;
@@ -51,7 +51,7 @@ const Icon = styled.img`
   animation-delay: ${({ delay }) => delay};
   cursor: pointer;
 
-  @media (max-width: 400px) {
+  @media (min-width: 361px) {
     width: 30px;
     margin-right: 10px;
   }
