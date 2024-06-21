@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import MainPage2 from "./test/MainPage2"; // 수정된 경로
+import MainPage from "./pages/MainPage";
 import theme from "./styles/theme";
 
 const GlobalStyle = createGlobalStyle`
@@ -55,7 +56,8 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <MainPage2 />
+      {/* <MainPage2 /> */}
+      <MainPage />
     </ThemeProvider>
   );
 };
