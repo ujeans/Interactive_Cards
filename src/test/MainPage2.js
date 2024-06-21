@@ -1,30 +1,5 @@
 import React, { useEffect } from "react";
-import styled, { createGlobalStyle } from "styled-components";
-
-const GlobalStyle = createGlobalStyle`
-  *, *:before, *:after {
-    border: 0;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  :root {
-    font-size: 18px;
-    --cardW: 14em;
-    --cardH: 8em;
-    --cardZInc: 2em;
-  }
-  body {
-    font: 1em "Open Sans", sans-serif;
-    height: 100vh;
-    overflow-x: hidden;
-  }
-  @media screen and (prefers-color-scheme: dark) {
-    body {
-      background: #3d3d3d;
-    }
-  }
-`;
+import styled from "styled-components";
 
 const Main = styled.main`
   display: block;
@@ -264,7 +239,7 @@ const Card = ({ data, index }) => {
   );
 };
 
-const App = () => {
+const MainPage2 = () => {
   useEffect(() => {
     const scrollGrid = () => {
       const bodyHeight = document.body.offsetHeight;
@@ -294,16 +269,14 @@ const App = () => {
   );
 
   return (
-    <>
-      <Main>
-        <Cards className="cards">
-          {cards.map((data, index) => (
-            <Card key={index} data={data} index={index} />
-          ))}
-        </Cards>
-      </Main>
-    </>
+    <Main>
+      <Cards className="cards">
+        {cards.map((data, index) => (
+          <Card key={index} data={data} index={index} />
+        ))}
+      </Cards>
+    </Main>
   );
 };
 
-export default App;
+export default MainPage2;
