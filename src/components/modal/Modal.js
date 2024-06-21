@@ -120,7 +120,7 @@ const Overlay = styled.div`
       1s ease-in-out forwards;
   `}
 
-  @media (min-width: 361px) {
+  @media screen and (min-width:361px) and (max-width: 410px) {
     flex-direction: column;
     align-content: space-between;
   }

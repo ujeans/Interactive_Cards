@@ -48,7 +48,7 @@ const ModalWrap = styled.div`
   justify-content: center;
   animation: ${slideInFromDown} 1s;
 
-  @media (min-width: 361px) {
+  @media screen and (min-width: 361px) and (max-width: 410px) {
     width: 100%;
   }
 `;
@@ -59,7 +59,7 @@ const FlippableCard = styled.div`
   height: 300px;
   perspective: 1000px;
 
-  @media (min-width: 361px) {
+  @media screen and (min-width: 361px) and (max-width: 410px) {
     width: 100%;
   }
 `;
