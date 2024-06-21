@@ -4,6 +4,15 @@ const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
 
+  *,
+  *:before,
+  *:after {
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
   :root {
     --cardW: ${props => props.theme.cardW};
     --cardH: ${props => props.theme.cardH};
@@ -21,14 +30,7 @@ const GlobalStyle = createGlobalStyle`
       "wdth" 100;
   }
 
-  *,
-  *:before,
-  *:after {
-    border: 0;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  
 
   .ubuntu-light {
     font-family: "Ubuntu", sans-serif;
