@@ -1,139 +1,79 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+// assets
+import qrcode from "../../../assets/qrcode.svg";
 
-const BackCardContent = ({ card, expand }) => {
-  const text = "Interactive Project Business Card Introduction";
+const BackCardContent = ({ card }) => {
   return (
-    <Content modalColor={card.modalColor}>
-      <ProjectMainWrapper>
-        <ProjectName expand={expand}>{card.projectName}</ProjectName>
-        <Desc expand={expand}>{card.desc}</Desc>
-      </ProjectMainWrapper>
-      <SideWrapper>
-        <ProjectDescWrapper expand={expand}>
-          {card.position
-            .split(" ")
-            .filter(text => text !== "/")
-            .map((text, index) => (
-              <div key={index}>{text}</div>
-            ))}
-          <div>/</div>
-          <div>Web</div>
-          <div>{card.project}</div>
-        </ProjectDescWrapper>
-        <CardDescWrapper>
-          <CardDescText expand={expand}>
-            {text.split(" ").map((word, index) => (
-              <div key={index}>{word}</div>
-            ))}
-          </CardDescText>
-          <Name expand={expand}>Eugean Hong</Name>
-        </CardDescWrapper>
-      </SideWrapper>
-      <Date expand={expand}>{card.date}</Date>
-    </Content>
+    <Container modalColor={card.modalColor}>
+      <Top>
+        <div>
+          <Logo></Logo>
+          <Introduce>{card.introduce}</Introduce>
+        </div>
+        <div>
+          <div>Front-end</div>
+          <div>Developer</div>
+        </div>
+      </Top>
+      <Bottom>
+        <InfoWrapper>
+          <Info>tel.010-1234-5678</Info>
+          <Info>mail.dbwlsxkal95@gmail.com</Info>
+          <Info>github.https://github.com/ujeans</Info>
+        </InfoWrapper>
+        <QR src={qrcode} />
+      </Bottom>
+    </Container>
   );
 };
 
 export default BackCardContent;
 
-const Content = styled.div`
+const Container = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  color: ${props => props.modalColor};
-  -webkit-font-smoothing: antialiased;
-`;
-
-const ProjectDescWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  font-size: 0.8em;
-
-  ${props =>
-    props.expand &&
-    css`
-      font-size: 4px;
-    `}
-
-  div {
-    text-align: right;
-  }
-`;
-
-const ProjectMainWrapper = styled.div`
-  width: 90%;
-  height: auto;
-`;
-
-const ProjectName = styled.div`
-  margin-bottom: 20px;
-  font-size: 2em;
-
-  ${props =>
-    props.expand &&
-    css`
-      margin-bottom: 1px;
-      font-size: 1.3em;
-    `}
-`;
-
-const Desc = styled.div`
-  ${props =>
-    props.expand &&
-    css`
-      font-size: 0.6em;
-    `}
-`;
-
-const SideWrapper = styled.div`
-  height: 100%;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`;
+  color: ${props => props.modalColor};
 
-const CardDescWrapper = styled.div`
-  align-items: flex-end;
-  div {
-    text-align: right;
+  @media (max-width: 400px) {
+    padding: 20px;
   }
 `;
 
-const CardDescText = styled.div`
+const Top = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Logo = styled.div`
+  width: 70px;
+  height: 70px;
   margin-bottom: 10px;
-  font-size: 0.7em;
-
-  ${props =>
-    props.expand &&
-    css`
-      margin-bottom: 4px;
-      font-size: 4px;
-    `}
+  background-color: aliceblue;
 `;
 
-const Name = styled.div`
-  font-size: 0.1em;
-
-  ${props =>
-    props.expand &&
-    css`
-      font-size: 4px;
-    `}
+const Introduce = styled.div`
+  font-size: 1.3rem;
 `;
 
-const Date = styled.div`
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
+const Bottom = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
-  ${props =>
-    props.expand &&
-    css`
-      bottom: 8px;
-      font-size: 10px;
-    `}
+const InfoWrapper = styled.div`
+  font-size: 0.8rem;
+`;
+
+const Info = styled.div`
+  margin-bottom: 3px;
+`;
+
+const QR = styled.img`
+  width: 60px;
+  height: 60px;
 `;

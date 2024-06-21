@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 // components
 import CardWrapper from "../components/common/card/CardWrapper";
 import Modal from "../components/modal/Modal";
-import BackCardContent from "../components/common/card/BackCardContent";
+import FrontCardContent from "../components/common/card/FrontCardContent";
 
 const MainCardScroll = ({ cards, cardWrapperRef, cardSize }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,28 +42,28 @@ const MainCardScroll = ({ cards, cardWrapperRef, cardSize }) => {
                 size={cardSize}
                 bac={card.themeColor}
               >
-                <BackCardContent card={card} expand={true} />
+                <FrontCardContent card={card} expand={true} />
               </CardWrapper>
               <CardWrapper
                 className="mid-top"
                 size={cardSize}
                 bac={card.themeColor}
               >
-                <BackCardContent card={card} expand={true} />
+                <FrontCardContent card={card} expand={true} />
               </CardWrapper>
               <CardWrapper
                 className="mid-bottom"
                 size={cardSize}
                 bac={card.themeColor}
               >
-                <BackCardContent card={card} expand={true} />
+                <FrontCardContent card={card} expand={true} />
               </CardWrapper>
               <CardWrapper
                 className="bottom"
                 size={cardSize}
                 bac={card.themeColor}
               >
-                <BackCardContent card={card} expand={true} />
+                <FrontCardContent card={card} expand={true} />
               </CardWrapper>
               <CardWrapper
                 className="shadow"

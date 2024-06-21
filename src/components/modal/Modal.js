@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 // components
 import ModalContainer from "./ModalContainer";
 import CardWrapper from "../common/card/CardWrapper";
-import FrontCardContent from "../common/card/FrontCardContent";
 import BackCardContent from "../common/card/BackCardContent";
+import FrontCardContent from "../common/card/FrontCardContent";
 import ProgressCircleComponent from "./ProgressCircle";
 // data
 import { cardText } from "../../data/cardData";
@@ -87,10 +87,10 @@ const Modal = ({
           >
             <FlippableCardInner isFlipped={isFlipped}>
               <CardWrapperFront bac={bac}>
-                <BackCardContent card={selectedCard} />
+                <FrontCardContent card={selectedCard} />
               </CardWrapperFront>
               <CardWrapperBack bac={bac}>
-                <FrontCardContent card={selectedCard} expand={true} />
+                <BackCardContent card={selectedCard} expand={true} />
               </CardWrapperBack>
             </FlippableCardInner>
           </FlippableCard>
