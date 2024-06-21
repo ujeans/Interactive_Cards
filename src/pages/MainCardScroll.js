@@ -32,7 +32,7 @@ const MainCardScroll = ({ cards, cardWrapperRef, cardSize }) => {
   };
 
   return (
-    <Container>
+    <>
       <Main>
         <Cards ref={cardWrapperRef}>
           {cards.map((card, index) => (
@@ -85,7 +85,7 @@ const MainCardScroll = ({ cards, cardWrapperRef, cardSize }) => {
           bac={selectedCard.themeColor}
         />
       )}
-    </Container>
+    </>
   );
 };
 
