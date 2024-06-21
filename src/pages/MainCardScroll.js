@@ -103,9 +103,10 @@ const Main = styled.main`
   margin: auto;
   position: relative;
   height: calc(var(--cardH, 8em) * 36 - 1.5em);
+
   ${props => css`
     @media screen and (min-width: 361px) {
-      height: calc(var(--cardH, 8em) * 18 - 1.5em);
+      height: calc(var(--cardH, 8em) * 8 - 1.5em);
     }
     @media screen and (min-width: 641px) {
       height: calc(var(--cardH, 8em) * 12 - 1.5em);
@@ -131,6 +132,7 @@ const Cards = styled.div`
     translateY(var(--scroll));
   transform-origin: 50% 0;
   transform-style: preserve-3d;
+
   ${props => css`
     @media screen and (min-width: 361px) {
       grid-template: repeat(18, var(--cardH, 8em)) / repeat(
