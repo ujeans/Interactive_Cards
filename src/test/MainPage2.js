@@ -1,57 +1,36 @@
-import React from "react";
-import styled from "styled-components";
-// data
-import { cardText } from "../data/cardData";
+import React, { useEffect } from "react";
+import styled, { createGlobalStyle } from "styled-components";
 
-const Card = ({ data, index }) => {
-  const cardClass = `card ${
-    index % 4 === 1
-      ? "background2"
-      : index % 4 === 2
-      ? "background3"
-      : index % 4 === 3
-      ? "background4"
-      : ""
-  }`;
-  const hueRotate =
-    index % 8 >= 4 && index % 8 <= 7
-      ? "hue-rotate90"
-      : index % 12 >= 8
-      ? "hue-rotate180"
-      : "";
-
-  return (
-    <Stack href="#" className={`${hueRotate}`}>
-      <CardContainer className={`${cardClass} top`}></CardContainer>
-    </Stack>
-  );
-};
-
-const MainPage2 = () => {
-  const cards = Array.from(
-    { length: 36 },
-    (_, i) => cardText[i % cardText.length]
-  );
-
-  return (
-    <Main>
-      <Cards className="cards">
-        {cards.map((data, index) => (
-          <Card key={index} data={data} index={index} />
-        ))}
-      </Cards>
-    </Main>
-  );
-};
-
-export default MainPage2;
+const GlobalStyle = createGlobalStyle`
+  *, *:before, *:after {
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  :root {
+    font-size: 18px;
+    --cardW: 14em;
+    --cardH: 8em;
+    --cardZInc: 2em;
+  }
+  body {
+    font: 1em "Open Sans", sans-serif;
+    height: 100vh;
+    overflow-x: hidden;
+  }
+  @media screen and (prefers-color-scheme: dark) {
+    body {
+      background: #3d3d3d;
+    }
+  }
+`;
 
 const Main = styled.main`
   display: block;
   margin: auto;
   position: relative;
   height: calc(var(--cardH) * 36 - 1.5em);
-
   @media screen and (min-width: 361px) {
     height: calc(var(--cardH) * 18 - 1.5em);
   }
@@ -197,3 +176,134 @@ const Heading2 = styled.h2`
 const City = styled.div`
   margin-top: 11.75em;
 `;
+
+const cardText = [
+  {
+    name: "Don Joel",
+    position: "Web Developer",
+    email: "donjoel@example.com",
+    phone: "216-362-0665",
+    address: "2699 Glenwood Avenue",
+    city: "Brook Park, OH 44142",
+  },
+  {
+    name: "Joe Schmoe",
+    position: "Graphic Designer",
+    email: "joeschmoe@example.com",
+    phone: "407-712-8549",
+    address: "469 Grand Avenue",
+    city: "Winter Park, FL 32789",
+  },
+  {
+    name: "Clint Westwood",
+    position: "Customer Support",
+    email: "clintwestwood@example.com",
+    phone: "865-217-3165",
+    address: "2212 Brown Avenue",
+    city: "Hartford, TN 37753",
+  },
+  {
+    name: "Ann Thrax",
+    position: "Project Manager",
+    email: "annthrax@example.com",
+    phone: "808-293-4613",
+    address: "3801 Stratford Drive",
+    city: "Laie, HI 96762",
+  },
+];
+
+const CardText = ({ name, position, email, phone, address, city }) => (
+  <Contents>
+    <Heading2>
+      <strong>ABC</strong>Design
+    </Heading2>
+    <h3>{name}</h3>
+    <p>{position}</p>
+    <p>✉️ {email}</p>
+    <p>📞 {phone}</p>
+    <p>{address}</p>
+    <p>{city}</p>
+  </Contents>
+);
+
+const CityOnly = ({ city }) => <Contents className="city">{city}</Contents>;
+
+const Card = ({ data, index }) => {
+  const cardClass = `card ${
+    index % 4 === 1
+      ? "background2"
+      : index % 4 === 2
+      ? "background3"
+      : index % 4 === 3
+      ? "background4"
+      : ""
+  }`;
+  const hueRotate =
+    index % 8 >= 4 && index % 8 <= 7
+      ? "hue-rotate90"
+      : index % 12 >= 8
+      ? "hue-rotate180"
+      : "";
+
+  return (
+    <Stack href="#" className={`${hueRotate}`}>
+      <CardContainer className={`${cardClass} top`}>
+        <CardText {...data} />
+      </CardContainer>
+      <CardContainer className="card mid-top">
+        <CityOnly city={data.city} />
+      </CardContainer>
+      <CardContainer className="card mid-bottom">
+        <CityOnly city={data.city} />
+      </CardContainer>
+      <CardContainer className="card bottom">
+        <CityOnly city={data.city} />
+      </CardContainer>
+      <CardContainer className="card shadow"></CardContainer>
+    </Stack>
+  );
+};
+
+const App = () => {
+  useEffect(() => {
+    const scrollGrid = () => {
+      const bodyHeight = document.body.offsetHeight;
+      const mainHeight = document.querySelector("main").offsetHeight;
+      const cards = document.querySelector(".cards");
+      const transY = (window.pageYOffset / (mainHeight - bodyHeight)) * -100;
+
+      cards.style.setProperty("--scroll", `${transY}%`);
+    };
+
+    window.addEventListener("resize", scrollGrid);
+    window.addEventListener("scroll", scrollGrid);
+
+    // Initial call
+    scrollGrid();
+
+    // Cleanup function
+    return () => {
+      window.removeEventListener("resize", scrollGrid);
+      window.removeEventListener("scroll", scrollGrid);
+    };
+  }, []);
+
+  const cards = Array.from(
+    { length: 36 },
+    (_, i) => cardText[i % cardText.length]
+  );
+
+  return (
+    <>
+      <Main>
+        <Cards className="cards">
+          {cards.map((data, index) => (
+            <Card key={index} data={data} index={index} />
+          ))}
+        </Cards>
+      </Main>
+    </>
+  );
+};
+
+export default App;
