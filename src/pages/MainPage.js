@@ -12,14 +12,21 @@ const MainPage = () => {
 
   useEffect(() => {
     const scrollGrid = () => {
-      const bodyHeight = document.body.offsetHeight;
-      const mainHeight = document.querySelector("main").offsetHeight;
+      const main = document.querySelector("main");
       const cardWrapper = cardWrapperRef.current;
 
-      if (cardWrapper) {
-        const transY =
-          (window.pageYOffset / (mainHeight - window.innerHeight)) * -100;
-        cardWrapper.style.setProperty("--scroll", `${transY}%`);
+      if (main && cardWrapper) {
+        const mainHeight = main.offsetHeight;
+        const windowHeight = window.innerHeight;
+        const scrollableHeight = mainHeight - windowHeight;
+        const scrollY = window.pageYOffset;
+
+        const transY = (scrollY / scrollableHeight) * -100;
+
+        // transY 값을 최대 -100%로 제한하여 모양 변경 방지
+        const clampedTransY = Math.max(transY, -100);
+
+        cardWrapper.style.setProperty("--scroll", `${clampedTransY}%`);
       }
     };
 
