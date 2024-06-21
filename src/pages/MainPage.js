@@ -17,7 +17,8 @@ const MainPage = () => {
       const cardWrapper = cardWrapperRef.current;
 
       if (cardWrapper) {
-        const transY = (window.pageYOffset / (mainHeight - bodyHeight)) * -100;
+        const transY =
+          (window.pageYOffset / (mainHeight - window.innerHeight)) * -100;
         cardWrapper.style.setProperty("--scroll", `${transY}%`);
       }
     };
