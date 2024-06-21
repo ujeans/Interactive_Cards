@@ -2,7 +2,7 @@ import styled, { keyframes } from "styled-components";
 // assets
 import github from "../../../assets/github.svg";
 import gmail from "../../../assets/gmail.svg";
-import linkedin from "../../../assets/github.svg";
+import linkedin from "../../../assets/linkedin.svg";
 
 const LinkIcons = ({ selectedCard }) => {
   return (
