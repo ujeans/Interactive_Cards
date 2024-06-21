@@ -39,7 +39,7 @@ const Container = styled.div`
   justify-content: space-between;
   color: ${props => props.modalColor};
 
-  @media (max-width: 500px) {
+  @media (min-width: 361px) {
     padding: 20px;
   }
 `;
