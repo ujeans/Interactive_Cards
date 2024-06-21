@@ -8,31 +8,30 @@ import Header from "../components/main/Header";
 import MainCardScroll from "./MainCardScroll";
 
 const MainPage = () => {
-  const cardWrapperRef = useRef(null);
+  // const cardWrapperRef = useRef(null);
 
   useEffect(() => {
     const scrollGrid = () => {
       const bodyHeight = document.body.offsetHeight;
       const mainHeight = document.querySelector("main").offsetHeight;
-      const cardWrapper = cardWrapperRef.current;
+      const cards = document.querySelector(".cards");
+      const transY = (window.pageYOffset / (mainHeight - bodyHeight)) * -100;
 
-      if (cardWrapper) {
-        const transY = (window.pageYOffset / (mainHeight - bodyHeight)) * -100;
-        cardWrapper.style.setProperty("--scroll", `${transY}%`);
-      }
+      cards.style.setProperty("--scroll", `${transY}%`);
     };
 
     window.addEventListener("resize", scrollGrid);
     window.addEventListener("scroll", scrollGrid);
 
+    // Initial call
     scrollGrid();
 
+    // Cleanup function
     return () => {
       window.removeEventListener("resize", scrollGrid);
       window.removeEventListener("scroll", scrollGrid);
     };
   }, []);
-
   const cards = Array.from(
     { length: 36 },
     (_, i) => cardText[i % cardText.length]
@@ -45,7 +44,7 @@ const MainPage = () => {
       </Helmet>
 
       <Header />
-      <MainCardScroll cards={cards} cardWrapperRef={cardWrapperRef} />
+      <MainCardScroll cards={cards} />
     </>
   );
 };

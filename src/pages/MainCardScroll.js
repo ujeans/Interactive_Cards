@@ -6,7 +6,7 @@ import CardWrapper from "../components/common/card/CardWrapper";
 import Modal from "../components/modal/Modal";
 import FrontCardContent from "../components/common/card/FrontCardContent";
 
-const MainCardScroll = ({ cards, cardWrapperRef, cardSize }) => {
+const MainCardScroll = ({ cards, cardSize }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
@@ -34,7 +34,7 @@ const MainCardScroll = ({ cards, cardWrapperRef, cardSize }) => {
   return (
     <>
       <Main>
-        <Cards ref={cardWrapperRef}>
+        <Cards className="cards">
           {cards.map((card, index) => (
             <Stack key={index} href="#" onClick={e => onClickCard(card, e)}>
               <CardWrapper
