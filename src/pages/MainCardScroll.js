@@ -28,7 +28,7 @@ const MainCardScroll = ({ cards, cardWrapperRef, cardSize }) => {
       setIsOpen(false);
       setIsClosing(false);
       setSelectedCard(null);
-    }, 1000); // 애니메이션 지속 시간과 일치
+    }, 1000);
   };
 
   return (
