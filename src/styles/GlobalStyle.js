@@ -28,6 +28,12 @@ const GlobalStyle = createGlobalStyle`
     font-variation-settings:
       "wdth" 100;
   }
+
+    .ubuntu-light {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
   
   @media screen and (prefers-color-scheme: dark) {
     body {
