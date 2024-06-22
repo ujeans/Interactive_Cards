@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
     --cardZInc: ${props => props.theme.cardZInc};
   }
   body {
-    font: 1em "Open Sans", sans-serif;
+    /* font: 1em "Open Sans", sans-serif; */
     height: 100vh;
     overflow-x: hidden;
 
@@ -27,12 +27,6 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
     font-variation-settings:
       "wdth" 100;
-  }
-
-  .ubuntu-light {
-    font-family: "Ubuntu", sans-serif;
-    font-weight: 300;
-    font-style: normal;
   }
   
   @media screen and (prefers-color-scheme: dark) {
