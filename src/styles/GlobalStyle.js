@@ -11,13 +11,11 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
   :root {
-    /* font-size: 18px; */
     --cardW: ${props => props.theme.cardW};
     --cardH: ${props => props.theme.cardH};
     --cardZInc: ${props => props.theme.cardZInc};
   }
   body {
-    /* font: 1em "Open Sans", sans-serif; */
     height: 100vh;
     overflow-x: hidden;
 
