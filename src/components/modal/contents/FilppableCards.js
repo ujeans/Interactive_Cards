@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 // components
-import CardWrapper from "../../common/card/CardWrapper";
-import FrontCardContent from "../../common/card/FrontCardContent";
-import BackCardContent from "../../common/card/BackCardContent";
+import CardWrapper from "../../card/CardWrapper";
+import FrontCardWrapper from "../../../containers/card/FrontCardWrapper";
+import BackCardContent from "../../../containers/card/BackCardContent";
 
 const FilppableCards = ({ bac, selectedCard }) => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -16,7 +16,7 @@ const FilppableCards = ({ bac, selectedCard }) => {
       >
         <FlippableCardInner isFlipped={isFlipped}>
           <CardWrapperFront bac={bac}>
-            <FrontCardContent card={selectedCard} />
+            <FrontCardWrapper card={selectedCard} />
           </CardWrapperFront>
           <CardWrapperBack bac={bac}>
             <BackCardContent card={selectedCard} expand={true} />

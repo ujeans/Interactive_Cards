@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import Layout from "../../components/main/scrollCards/Layout";
 import CardsWrapper from "../../components/main/scrollCards/CardsWrapper";
 import Stack from "../../components/main/scrollCards/Stack";
-import CardWrapper from "../../components/common/card/CardWrapper";
+import CardWrapper from "../../components/card/CardWrapper";
 import Modal from "../../components/modal/Modal";
-import FrontCardContent from "../../components/common/card/FrontCardContent";
+import FrontCardWrapper from "../card/FrontCardWrapper";
 
 const ScrollCards = ({ cards, cardSize }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,28 +43,28 @@ const ScrollCards = ({ cards, cardSize }) => {
                 size={cardSize}
                 bac={card.themeColor}
               >
-                <FrontCardContent card={card} expand={true} />
+                <FrontCardWrapper card={card} expand={true} />
               </CardWrapper>
               <CardWrapper
                 className="mid-top"
                 size={cardSize}
                 bac={card.themeColor}
               >
-                <FrontCardContent card={card} expand={true} />
+                <FrontCardWrapper card={card} expand={true} />
               </CardWrapper>
               <CardWrapper
                 className="mid-bottom"
                 size={cardSize}
                 bac={card.themeColor}
               >
-                <FrontCardContent card={card} expand={true} />
+                <FrontCardWrapper card={card} expand={true} />
               </CardWrapper>
               <CardWrapper
                 className="bottom"
                 size={cardSize}
                 bac={card.themeColor}
               >
-                <FrontCardContent card={card} expand={true} />
+                <FrontCardWrapper card={card} expand={true} />
               </CardWrapper>
               <CardWrapper
                 className="shadow"
