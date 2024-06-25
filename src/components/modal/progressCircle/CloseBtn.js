@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 // assets
 import XIcon from "../../../assets/x_svg";
 // styles
@@ -21,17 +21,6 @@ function CloseBtn({ onClose, themeColor, modalColor }) {
 }
 
 export default CloseBtn;
-
-const slideInFromRight = keyframes`
-  0% {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
 
 const Wrapper = styled.div`
   position: absolute;
