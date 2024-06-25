@@ -4,8 +4,9 @@ import Layout from "../../components/main/scrollCards/Layout";
 import CardsWrapper from "../../components/main/scrollCards/CardsWrapper";
 import Stack from "../../components/main/scrollCards/Stack";
 import CardWrapper from "../../components/card/CardWrapper";
-import Modal from "../../components/modal/Modal";
 import FrontCardWrapper from "../card/FrontCardWrapper";
+// pages
+import ModalPage from "../../pages/ModalPage";
 
 const ScrollCards = ({ cards, cardSize }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -76,7 +77,7 @@ const ScrollCards = ({ cards, cardSize }) => {
         </CardsWrapper>
       </Layout>
       {isOpen && selectedCard && (
-        <Modal
+        <ModalPage
           open={isOpen}
           isClosing={isClosing}
           selectedCard={selectedCard}

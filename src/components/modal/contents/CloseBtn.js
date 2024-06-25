@@ -3,23 +3,17 @@ import styled, { keyframes } from "styled-components";
 // assets
 import XIcon from "../../../assets/x_svg";
 
-function CloseBtn({ onClose, selectedCard }) {
+function CloseBtn({ onClose, themeColor, modalColor }) {
   const [hover, setHover] = useState(false);
-
-  const handleClose = () => {
-    onClose?.();
-  };
 
   return (
     <Wrapper
-      onClick={handleClose}
-      themeColor={selectedCard.themeColor}
+      onClick={onClose}
+      themeColor={themeColor}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <XIcon
-        color={hover ? selectedCard.modalColor : selectedCard.themeColor}
-      />
+      <XIcon color={hover ? modalColor : themeColor} />
     </Wrapper>
   );
 }
