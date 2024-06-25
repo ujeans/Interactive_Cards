@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+// containers
+import Container from "../../components/modal/progressCircle/Container";
+import ProgressTimer from "./ProgressTimer";
 // components
-import ProgressCircleComponent from "../../components/modal/ProgressCircle";
-import CloseBtn from "../../components/modal/contents/CloseBtn";
+import CloseBtn from "../../components/modal/progressCircle/CloseBtn";
 // data
 import { cardText } from "../../data/cardData";
-// components
 
 const ProgressCircle = ({
   selectedCard,
@@ -56,7 +56,7 @@ const ProgressCircle = ({
   return (
     <Container>
       {showProgressCircle && (
-        <ProgressCircleComponent
+        <ProgressTimer
           duration={count}
           setCount={setCount}
           themeColor={themeColor}
@@ -74,10 +74,3 @@ const ProgressCircle = ({
 };
 
 export default ProgressCircle;
-
-const Container = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
