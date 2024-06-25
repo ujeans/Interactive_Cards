@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 // assets
 import XIcon from "../../../assets/x_svg";
+// styles
+import animations from "../../../styles/animations";
 
 function CloseBtn({ onClose, themeColor, modalColor }) {
   const [hover, setHover] = useState(false);
@@ -41,7 +43,7 @@ const Wrapper = styled.div`
   border-radius: 50%;
   border: 2px solid ${({ themeColor }) => themeColor};
   cursor: pointer;
-  animation: ${slideInFromRight} 1s ease-in-out forwards;
+  animation: ${animations.slideInFromRight} 1s ease-in-out forwards;
   opacity: 0;
 
   &:hover {

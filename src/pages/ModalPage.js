@@ -1,4 +1,6 @@
 import styled, { css, keyframes } from "styled-components";
+// styles
+import animations from "../styles/animations";
 // components
 import ModalContainer from "../components/modal/ModalContainer";
 import LinkIcons from "../containers/modal/LinkIcons";
@@ -38,24 +40,6 @@ const ModalPage = ({
 
 export default ModalPage;
 
-const expandCircle = (x, y) => keyframes`
-  0% {
-    clip-path: circle(0% at ${x}px ${y}px);
-  }
-  100% {
-    clip-path: circle(150% at ${x}px ${y}px);
-  }
-`;
-
-const contractCircle = (x, y) => keyframes`
-  0% {
-    clip-path: circle(150% at ${x}px ${y}px);
-  }
-  100% {
-    clip-path: circle(0% at ${x}px ${y}px);
-  }
-`;
-
 const Overlay = styled.div`
   position: fixed;
   width: 100%;
@@ -72,8 +56,12 @@ const Overlay = styled.div`
   z-index: 9999;
   ${({ clickPosition, isClosing }) => css`
     animation: ${isClosing
-        ? contractCircle(clickPosition.x, clickPosition.y)
-        : expandCircle(clickPosition.x, clickPosition.y)}
+        ? css`
+            ${animations.contractCircle(clickPosition.x, clickPosition.y)}
+          `
+        : css`
+            ${animations.expandCircle(clickPosition.x, clickPosition.y)}
+          `}
       1s ease-in-out forwards;
   `}
 

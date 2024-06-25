@@ -1,4 +1,6 @@
 import styled, { css, keyframes } from "styled-components";
+// styles
+import animations from "../../styles/animations";
 
 const CardWrapper = ({
   className,
@@ -22,15 +24,6 @@ const CardWrapper = ({
 };
 
 export default CardWrapper;
-
-const slideIn = keyframes`
-  0% {
-    transform: translateX(500px) scale(0.2);
-  }
-  100% {
-    transform: translateX(0px) scale(1);
-  }
-`;
 
 const Wrapper = styled.div`
   width: ${({ size }) => (size ? size.width : "100%")};
@@ -80,7 +73,7 @@ const Wrapper = styled.div`
     ${({ isInitialLoad }) =>
       isInitialLoad &&
       css`
-        animation: ${slideIn} 1.5s ease-in-out forwards;
+        animation: ${animations.slideIn} 1.5s ease-in-out forwards;
       `}
   }
 `;
