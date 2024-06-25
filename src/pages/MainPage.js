@@ -5,7 +5,7 @@ import { cardText } from "../data/cardData";
 // components
 import Header from "../components/main/Header";
 // pages
-import MainCardScroll from "./MainCardScroll";
+import ScrollCards from "../containers/main/ScrollCards";
 
 const MainPage = () => {
   // const cardWrapperRef = useRef(null);
@@ -45,7 +45,7 @@ const MainPage = () => {
       </Helmet>
 
       <Header />
-      <MainCardScroll cards={cards} />
+      <ScrollCards cards={cards} />
     </>
   );
 };
