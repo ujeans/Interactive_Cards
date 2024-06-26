@@ -1,11 +1,11 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled, { css } from "styled-components";
 // styles
 import animations from "../../../styles/animations";
 
-const ModalWrapper = ({ children }) => {
-  return <ModalWrap>{children}</ModalWrap>;
-};
+const ModalWrapper = forwardRef(({ children }, ref) => {
+  return <ModalWrap ref={ref}>{children}</ModalWrap>;
+});
 
 export default ModalWrapper;
 

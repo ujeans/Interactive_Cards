@@ -7,8 +7,12 @@ import CardWrapper from "../../components/card/CardWrapper";
 import FrontCardWrapper from "../card/FrontCardWrapper";
 // pages
 import ModalPage from "../../pages/ModalPage";
+// data
+import { cardText } from "../../data/cardData";
+// hooks
+import useScrollGrid from "../../hooks/useScrollGrid";
 
-const ScrollCards = ({ cards, cardSize }) => {
+const ScrollCards = ({ cardSize }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
@@ -16,6 +20,7 @@ const ScrollCards = ({ cards, cardSize }) => {
 
   const onClickCard = (card, e) => {
     const rect = e.currentTarget.getBoundingClientRect();
+
     setClickPosition({
       x: rect.left + rect.width / 2,
       y: rect.top + rect.height / 2,
@@ -32,6 +37,13 @@ const ScrollCards = ({ cards, cardSize }) => {
       setSelectedCard(null);
     }, 1000);
   };
+
+  const cards = Array.from(
+    { length: 36 },
+    (_, i) => cardText[i % cardText.length]
+  );
+
+  useScrollGrid();
 
   return (
     <>

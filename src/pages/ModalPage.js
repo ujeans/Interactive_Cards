@@ -1,9 +1,13 @@
+import { useRef } from "react";
+// containers
+import FilppableCards from "../containers/modal/FilppableCards";
+import ProgressCircle from "../containers/modal/ProgressCircle";
 // components
 import ModalContainer from "../components/modal/ModalContainer";
 import LinkIcons from "../containers/modal/LinkIcons";
-import FilppableCards from "../containers/modal/FilppableCards";
-import ProgressCircle from "../containers/modal/ProgressCircle";
 import Overlay from "../components/modal/Overlay";
+// hooks
+import useOutSideClick from "../hooks/useOutSideClick";
 
 const ModalPage = ({
   onClose,
@@ -13,6 +17,10 @@ const ModalPage = ({
   bac,
   setSelectedCard,
 }) => {
+  const modalRef = useRef(null);
+
+  useOutSideClick(modalRef, onClose);
+
   return (
     <ModalContainer>
       <Overlay
@@ -22,7 +30,12 @@ const ModalPage = ({
       >
         <LinkIcons selectedCard={selectedCard} />
 
-        <FilppableCards bac={bac} selectedCard={selectedCard} />
+        <FilppableCards
+          bac={bac}
+          selectedCard={selectedCard}
+          ModalWrap
+          ref={modalRef}
+        />
 
         <ProgressCircle
           selectedCard={selectedCard}
