@@ -2,11 +2,7 @@ import React, { forwardRef } from "react";
 import styled, { css } from "styled-components";
 
 const CardsWrapper = forwardRef(({ children }, ref) => {
-  return (
-    <Cards className="cards" ref={ref}>
-      {children}
-    </Cards>
-  );
+  return <Cards ref={ref}>{children}</Cards>;
 });
 
 export default CardsWrapper;

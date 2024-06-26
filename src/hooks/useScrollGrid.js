@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 
-const useScrollGrid = elementRef => {
+const useScrollGrid = ref => {
   useEffect(() => {
     const scrollGrid = () => {
       const bodyHeight = document.body.offsetHeight;
       const mainHeight = document.querySelector("main").offsetHeight;
-      const element = elementRef.current;
+      const element = ref.current;
       if (element) {
         const transY = (window.pageYOffset / (mainHeight - bodyHeight)) * -100;
         element.style.setProperty("--scroll", `${transY}%`);
@@ -21,7 +21,7 @@ const useScrollGrid = elementRef => {
       window.removeEventListener("resize", scrollGrid);
       window.removeEventListener("scroll", scrollGrid);
     };
-  }, [elementRef]);
+  }, [ref]);
 };
 
 export default useScrollGrid;
