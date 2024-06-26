@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 // components
 import Layout from "../../components/main/scrollCards/Layout";
 import CardsWrapper from "../../components/main/scrollCards/CardsWrapper";
@@ -13,6 +13,7 @@ import { cardText } from "../../data/cardData";
 import useScrollGrid from "../../hooks/useScrollGrid";
 
 const ScrollCards = ({ cardSize }) => {
+  const cardsRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
@@ -43,12 +44,12 @@ const ScrollCards = ({ cardSize }) => {
     (_, i) => cardText[i % cardText.length]
   );
 
-  useScrollGrid();
+  useScrollGrid(cardsRef);
 
   return (
     <>
       <Layout>
-        <CardsWrapper>
+        <CardsWrapper ref={cardsRef}>
           {cards.map((card, index) => (
             <Stack key={index} href="#" onClick={e => onClickCard(card, e)}>
               <CardWrapper
